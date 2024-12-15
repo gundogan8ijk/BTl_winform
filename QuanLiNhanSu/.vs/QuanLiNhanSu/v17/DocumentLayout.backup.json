@@ -1,0 +1,153 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\DAO VIET TAM\\Downloads\\btlhelllo\\QuanLiNhanSu\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A6B62B89-56CC-4939-BF7D-40D16D234043}|QuanLiNhanSu\\QuanLiNhanSu.csproj|c:\\users\\dao viet tam\\downloads\\btlhelllo\\quanlinhansu\\quanlinhansu\\user control\\hienthidanhsach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6B62B89-56CC-4939-BF7D-40D16D234043}|QuanLiNhanSu\\QuanLiNhanSu.csproj|solutionrelative:quanlinhansu\\user control\\hienthidanhsach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6B62B89-56CC-4939-BF7D-40D16D234043}|QuanLiNhanSu\\QuanLiNhanSu.csproj|c:\\users\\dao viet tam\\downloads\\btlhelllo\\quanlinhansu\\quanlinhansu\\class\\database_connect\\database_connect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6B62B89-56CC-4939-BF7D-40D16D234043}|QuanLiNhanSu\\QuanLiNhanSu.csproj|solutionrelative:quanlinhansu\\class\\database_connect\\database_connect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6B62B89-56CC-4939-BF7D-40D16D234043}|QuanLiNhanSu\\QuanLiNhanSu.csproj|c:\\users\\dao viet tam\\downloads\\btlhelllo\\quanlinhansu\\quanlinhansu\\user control\\chamc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6B62B89-56CC-4939-BF7D-40D16D234043}|QuanLiNhanSu\\QuanLiNhanSu.csproj|solutionrelative:quanlinhansu\\user control\\chamc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6B62B89-56CC-4939-BF7D-40D16D234043}|QuanLiNhanSu\\QuanLiNhanSu.csproj|c:\\users\\dao viet tam\\downloads\\btlhelllo\\quanlinhansu\\quanlinhansu\\user control\\luong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6B62B89-56CC-4939-BF7D-40D16D234043}|QuanLiNhanSu\\QuanLiNhanSu.csproj|solutionrelative:quanlinhansu\\user control\\luong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6B62B89-56CC-4939-BF7D-40D16D234043}|QuanLiNhanSu\\QuanLiNhanSu.csproj|c:\\users\\dao viet tam\\downloads\\btlhelllo\\quanlinhansu\\quanlinhansu\\user control\\luong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A6B62B89-56CC-4939-BF7D-40D16D234043}|QuanLiNhanSu\\QuanLiNhanSu.csproj|solutionrelative:quanlinhansu\\user control\\luong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6B62B89-56CC-4939-BF7D-40D16D234043}|QuanLiNhanSu\\QuanLiNhanSu.csproj|c:\\users\\dao viet tam\\downloads\\btlhelllo\\quanlinhansu\\quanlinhansu\\user control\\chamc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A6B62B89-56CC-4939-BF7D-40D16D234043}|QuanLiNhanSu\\QuanLiNhanSu.csproj|solutionrelative:quanlinhansu\\user control\\chamc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6B62B89-56CC-4939-BF7D-40D16D234043}|QuanLiNhanSu\\QuanLiNhanSu.csproj|c:\\users\\dao viet tam\\downloads\\btlhelllo\\quanlinhansu\\quanlinhansu\\user control\\chamc.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6B62B89-56CC-4939-BF7D-40D16D234043}|QuanLiNhanSu\\QuanLiNhanSu.csproj|solutionrelative:quanlinhansu\\user control\\chamc.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6B62B89-56CC-4939-BF7D-40D16D234043}|QuanLiNhanSu\\QuanLiNhanSu.csproj|c:\\users\\dao viet tam\\downloads\\btlhelllo\\quanlinhansu\\quanlinhansu\\user control\\hienthidanhsach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A6B62B89-56CC-4939-BF7D-40D16D234043}|QuanLiNhanSu\\QuanLiNhanSu.csproj|solutionrelative:quanlinhansu\\user control\\hienthidanhsach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Database_connect.cs",
+              "DocumentMoniker": "C:\\Users\\DAO VIET TAM\\Downloads\\btlhelllo\\QuanLiNhanSu\\QuanLiNhanSu\\Class\\Database_connect\\Database_connect.cs",
+              "RelativeDocumentMoniker": "QuanLiNhanSu\\Class\\Database_connect\\Database_connect.cs",
+              "ToolTip": "C:\\Users\\DAO VIET TAM\\Downloads\\btlhelllo\\QuanLiNhanSu\\QuanLiNhanSu\\Class\\Database_connect\\Database_connect.cs",
+              "RelativeToolTip": "QuanLiNhanSu\\Class\\Database_connect\\Database_connect.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-15T16:20:15.585Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Luong.cs",
+              "DocumentMoniker": "C:\\Users\\DAO VIET TAM\\Downloads\\btlhelllo\\QuanLiNhanSu\\QuanLiNhanSu\\User Control\\Luong.cs",
+              "RelativeDocumentMoniker": "QuanLiNhanSu\\User Control\\Luong.cs",
+              "ToolTip": "C:\\Users\\DAO VIET TAM\\Downloads\\btlhelllo\\QuanLiNhanSu\\QuanLiNhanSu\\User Control\\Luong.cs",
+              "RelativeToolTip": "QuanLiNhanSu\\User Control\\Luong.cs",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAswDkAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-15T16:05:10.606Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Luong.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\DAO VIET TAM\\Downloads\\btlhelllo\\QuanLiNhanSu\\QuanLiNhanSu\\User Control\\Luong.cs",
+              "RelativeDocumentMoniker": "QuanLiNhanSu\\User Control\\Luong.cs",
+              "ToolTip": "C:\\Users\\DAO VIET TAM\\Downloads\\btlhelllo\\QuanLiNhanSu\\QuanLiNhanSu\\User Control\\Luong.cs [Design]",
+              "RelativeToolTip": "QuanLiNhanSu\\User Control\\Luong.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-15T16:05:06.151Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ChamC.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\DAO VIET TAM\\Downloads\\btlhelllo\\QuanLiNhanSu\\QuanLiNhanSu\\User Control\\ChamC.Designer.cs",
+              "RelativeDocumentMoniker": "QuanLiNhanSu\\User Control\\ChamC.Designer.cs",
+              "ToolTip": "C:\\Users\\DAO VIET TAM\\Downloads\\btlhelllo\\QuanLiNhanSu\\QuanLiNhanSu\\User Control\\ChamC.Designer.cs",
+              "RelativeToolTip": "QuanLiNhanSu\\User Control\\ChamC.Designer.cs",
+              "ViewState": "AgIAAA0BAAAAAAAAAAAxwBUBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-15T16:01:20.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ChamC.cs",
+              "DocumentMoniker": "C:\\Users\\DAO VIET TAM\\Downloads\\btlhelllo\\QuanLiNhanSu\\QuanLiNhanSu\\User Control\\ChamC.cs",
+              "RelativeDocumentMoniker": "QuanLiNhanSu\\User Control\\ChamC.cs",
+              "ToolTip": "C:\\Users\\DAO VIET TAM\\Downloads\\btlhelllo\\QuanLiNhanSu\\QuanLiNhanSu\\User Control\\ChamC.cs",
+              "RelativeToolTip": "QuanLiNhanSu\\User Control\\ChamC.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAmwNIAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-15T16:01:10.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ChamC.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\DAO VIET TAM\\Downloads\\btlhelllo\\QuanLiNhanSu\\QuanLiNhanSu\\User Control\\ChamC.cs",
+              "RelativeDocumentMoniker": "QuanLiNhanSu\\User Control\\ChamC.cs",
+              "ToolTip": "C:\\Users\\DAO VIET TAM\\Downloads\\btlhelllo\\QuanLiNhanSu\\QuanLiNhanSu\\User Control\\ChamC.cs [Design]",
+              "RelativeToolTip": "QuanLiNhanSu\\User Control\\ChamC.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-15T16:01:06.192Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Hienthidanhsach.cs",
+              "DocumentMoniker": "C:\\Users\\DAO VIET TAM\\Downloads\\btlhelllo\\QuanLiNhanSu\\QuanLiNhanSu\\User Control\\Hienthidanhsach.cs",
+              "RelativeDocumentMoniker": "QuanLiNhanSu\\User Control\\Hienthidanhsach.cs",
+              "ToolTip": "C:\\Users\\DAO VIET TAM\\Downloads\\btlhelllo\\QuanLiNhanSu\\QuanLiNhanSu\\User Control\\Hienthidanhsach.cs*",
+              "RelativeToolTip": "QuanLiNhanSu\\User Control\\Hienthidanhsach.cs*",
+              "ViewState": "AgIAALUAAAAAAAAAAAAAAMAAAAClAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-15T14:49:04.476Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Hienthidanhsach.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\DAO VIET TAM\\Downloads\\btlhelllo\\QuanLiNhanSu\\QuanLiNhanSu\\User Control\\Hienthidanhsach.cs",
+              "RelativeDocumentMoniker": "QuanLiNhanSu\\User Control\\Hienthidanhsach.cs",
+              "ToolTip": "C:\\Users\\DAO VIET TAM\\Downloads\\btlhelllo\\QuanLiNhanSu\\QuanLiNhanSu\\User Control\\Hienthidanhsach.cs [Design]*",
+              "RelativeToolTip": "QuanLiNhanSu\\User Control\\Hienthidanhsach.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-15T14:48:28.746Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

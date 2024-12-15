@@ -1,0 +1,71 @@
+E:\CONG NGHE MOI\C#\Window Form C#\BTL\QuanLiNhanSu\QuanLiNhanSu\bin\Debug\QuanLiNhanSu.exe
+E:\CONG NGHE MOI\C#\Window Form C#\BTL\QuanLiNhanSu\QuanLiNhanSu\bin\Debug\QuanLiNhanSu.exe.config
+E:\CONG NGHE MOI\C#\Window Form C#\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.csproj.AssemblyReference.cache
+E:\CONG NGHE MOI\C#\Window Form C#\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.DangNhap.resources
+E:\CONG NGHE MOI\C#\Window Form C#\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Home.resources
+E:\CONG NGHE MOI\C#\Window Form C#\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Hienthidanhsach.resources
+E:\CONG NGHE MOI\C#\Window Form C#\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Luong.resources
+E:\CONG NGHE MOI\C#\Window Form C#\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Properties.Resources.resources
+E:\CONG NGHE MOI\C#\Window Form C#\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.User_Control.Taikhoan.resources
+E:\CONG NGHE MOI\C#\Window Form C#\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.TimKiem.resources
+E:\CONG NGHE MOI\C#\Window Form C#\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Xuatds.resources
+E:\CONG NGHE MOI\C#\Window Form C#\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.csproj.GenerateResource.cache
+E:\CONG NGHE MOI\C#\Window Form C#\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.csproj.CoreCompileInputs.cache
+E:\CONG NGHE MOI\C#\Window Form C#\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.exe
+E:\CONG NGHE MOI\C#\Window Form C#\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.pdb
+E:\CONG NGHE MOI\C#\Window Form C#\BTL\QuanLiNhanSu\QuanLiNhanSu\bin\Debug\QuanLiNhanSu.pdb
+E:\CONG NGHE MOI\C#\Window Form C#\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.DangKi.resources
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\bin\Debug\QuanLiNhanSu.exe.config
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\bin\Debug\QuanLiNhanSu.exe
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\bin\Debug\QuanLiNhanSu.pdb
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.csproj.AssemblyReference.cache
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.DangKi.resources
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.DangNhap.resources
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Home.resources
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Hienthidanhsach.resources
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Luong.resources
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Properties.Resources.resources
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.User_Control.Taikhoan.resources
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.TimKiem.resources
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Xuatds.resources
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.csproj.GenerateResource.cache
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.csproj.CoreCompileInputs.cache
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.exe
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.pdb
+C:\Users\DAO VIET TAM\Source\Repos\BTL_Net\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.User_Control.ChamCong.resources
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.csproj.AssemblyReference.cache
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.DangKi.resources
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.DangNhap.resources
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Home.resources
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.User_Control.ChamCong.resources
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Hienthidanhsach.resources
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Luong.resources
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Properties.Resources.resources
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.User_Control.Taikhoan.resources
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Xuatds.resources
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.csproj.GenerateResource.cache
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.csproj.CoreCompileInputs.cache
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.exe
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.pdb
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\bin\Debug\QuanLiNhanSu.exe.config
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\bin\Debug\QuanLiNhanSu.exe
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\bin\Debug\QuanLiNhanSu.pdb
+D:\Downloads\BTL\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.User_Control.ChamC.resources
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\bin\Debug\QuanLiNhanSu.exe.config
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\bin\Debug\QuanLiNhanSu.exe
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\bin\Debug\QuanLiNhanSu.pdb
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.csproj.AssemblyReference.cache
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.DangKi.resources
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.DangNhap.resources
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Home.resources
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.User_Control.ChamC.resources
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.User_Control.ChamCong.resources
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Hienthidanhsach.resources
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Luong.resources
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Properties.Resources.resources
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.User_Control.Taikhoan.resources
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.Xuatds.resources
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.csproj.GenerateResource.cache
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.csproj.CoreCompileInputs.cache
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.exe
+C:\Users\DAO VIET TAM\Downloads\btlhelllo\QuanLiNhanSu\QuanLiNhanSu\obj\Debug\QuanLiNhanSu.pdb
