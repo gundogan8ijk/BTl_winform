@@ -1,59 +1,70 @@
-using System;
-using QuanLiNhanSu.Core._ValueObjects;
-using QuanLiNhanSu.Core.Shared;
-using Ardalis.SharedKernel;
-using Ardalis.GuardClauses;
-
 namespace QuanLiNhanSu.Core.NhanVienAgg;
 
-public class NhanVien : EntityBase<NhanVien, string>, IAggregateRoot
+public class NhanVien : EntityBase<NhanVien, NhanVienId>, IAggregateRoot
 {
-    public string MaNV => Id;
-    public string TenNV { get; private set; }
-    public DateTime NgaySinh { get; private set; }
-    public string GioiTinh { get; private set; }
-    public string SoDienThoai { get; private set; }
-    public string Email { get; private set; }
-    public string ChucVu { get; private set; }
-    public string DiaChi { get; private set; }
+    public NhanVienId MaNV => Id;
+    public TenNhanVien TenNV { get; private set; }
+    public NgaySinhVO NgaySinh { get; private set; }
+    public GioiTinh GioiTinh { get; private set; }
+    public SoDienThoaiVN SoDienThoai { get; private set; }
+    public EmailAddress Email { get; private set; }
+    public ChucVu ChucVu { get; private set; }
+    public DiaChi DiaChi { get; private set; }
     public int ThangVaoLam { get; private set; }
 
-    // Required by EF Core
     #pragma warning disable CS8618
     private NhanVien() { }
     #pragma warning restore CS8618
 
-    public NhanVien(string maNV, string tenNV, DateTime ngaySinh, string gioiTinh, string soDienThoai, string email, string chucVu, string diaChi, int thangVaoLam)
+    public NhanVien(
+        NhanVienId maNV,
+        TenNhanVien tenNV,
+        NgaySinhVO ngaySinh,
+        GioiTinh gioiTinh,
+        SoDienThoaiVN soDienThoai,
+        EmailAddress email,
+        ChucVu chucVu,
+        DiaChi diaChi,
+        int thangVaoLam)
     {
-        Guard.Against.NullOrWhiteSpace(maNV, nameof(maNV), "Mã nhân viên không được để trống.");
-        Guard.Against.NullOrWhiteSpace(tenNV, nameof(tenNV), "Tên nhân viên không được để trống.");
-
-        Id = maNV.Trim();
-        TenNV = tenNV.Trim();
+        Guard.Against.OutOfRange(thangVaoLam, nameof(thangVaoLam), 1, 12);
+        Id = maNV;
+        TenNV = tenNV;
         NgaySinh = ngaySinh;
-        GioiTinh = string.IsNullOrWhiteSpace(gioiTinh) ? "Nam" : gioiTinh.Trim();
-        SoDienThoai = new SoDienThoai(soDienThoai).Value;
-        Email = new Email(email).Value;
-        ChucVu = string.IsNullOrWhiteSpace(chucVu) ? "Nhân viên" : chucVu.Trim();
-        DiaChi = string.IsNullOrWhiteSpace(diaChi) ? "" : diaChi.Trim();
-        ThangVaoLam = thangVaoLam == 0 ? DateTime.Now.Month : thangVaoLam;
+        GioiTinh = gioiTinh;
+        SoDienThoai = soDienThoai;
+        Email = email;
+        ChucVu = chucVu;
+        DiaChi = diaChi;
+        ThangVaoLam = thangVaoLam;
     }
 
-    public static NhanVien Create(string maNV, string tenNV, DateTime ngaySinh, string gioiTinh, string soDienThoai, string email, string chucVu, string diaChi, int thangVaoLam)
+    public static NhanVien Create(
+        string maNV, string tenNV, DateOnly ngaySinh, string gioiTinh,
+        string soDienThoai, string email, string chucVu, string diaChi, int thangVaoLam)
     {
-        return new NhanVien(maNV, tenNV, ngaySinh, gioiTinh, soDienThoai, email, chucVu, diaChi, thangVaoLam);
+        return new NhanVien(
+            NhanVienId.From(maNV),
+            TenNhanVien.From(tenNV),
+            NgaySinhVO.From(ngaySinh),
+            GioiTinh.FromValue(gioiTinh),
+            SoDienThoaiVN.From(soDienThoai),
+            EmailAddress.From(email),
+            ChucVu.From(chucVu),
+            DiaChi.From(diaChi),
+            thangVaoLam);
     }
 
-    public void UpdateInfo(string tenNV, DateTime ngaySinh, string gioiTinh, string soDienThoai, string email, string chucVu, string diaChi)
+    public void Update(
+        TenNhanVien tenNV, NgaySinhVO ngaySinh, GioiTinh gioiTinh,
+        SoDienThoaiVN soDienThoai, EmailAddress email, ChucVu chucVu, DiaChi diaChi)
     {
-        Guard.Against.NullOrWhiteSpace(tenNV, nameof(tenNV), "Tên nhân viên không được để trống.");
-
-        TenNV = tenNV.Trim();
+        TenNV = tenNV;
         NgaySinh = ngaySinh;
-        GioiTinh = string.IsNullOrWhiteSpace(gioiTinh) ? "Nam" : gioiTinh.Trim();
-        SoDienThoai = new SoDienThoai(soDienThoai).Value;
-        Email = new Email(email).Value;
-        ChucVu = string.IsNullOrWhiteSpace(chucVu) ? "Nhân viên" : chucVu.Trim();
-        DiaChi = string.IsNullOrWhiteSpace(diaChi) ? "" : diaChi.Trim();
+        GioiTinh = gioiTinh;
+        SoDienThoai = soDienThoai;
+        Email = email;
+        ChucVu = chucVu;
+        DiaChi = diaChi;
     }
 }

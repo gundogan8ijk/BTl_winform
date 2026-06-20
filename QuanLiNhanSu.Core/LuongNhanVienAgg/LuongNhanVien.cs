@@ -1,54 +1,56 @@
-using QuanLiNhanSu.Core.Shared;
-using Ardalis.SharedKernel;
-
 namespace QuanLiNhanSu.Core.LuongNhanVienAgg;
 
 public class LuongNhanVien : EntityBase<LuongNhanVien, string>, IAggregateRoot
 {
-    public string MaNV { get; private set; }
-    public int ThangNhanLuong { get; private set; }
-    public int Nam { get; private set; }
-    public double TienThuong { get; private set; }
-    public double TienPhat { get; private set; }
-    public double PhuCap { get; private set; }
-    public double TienLuong { get; private set; }
+    public NhanVienId MaNV { get; private set; }
+    public ThangNam ThangNam { get; private set; }
+    public MucLuong TienLuong { get; private set; }
+    public TienThuong TienThuong { get; private set; }
+    public TienPhat TienPhat { get; private set; }
+    public PhuCap PhuCap { get; private set; }
 
-    // Required by EF Core
     #pragma warning disable CS8618
     private LuongNhanVien() { }
     #pragma warning restore CS8618
 
-    public LuongNhanVien(string maNV, int thangNhanLuong, int nam, double tienThuong, double tienPhat, double phuCap, double tienLuong)
+    public LuongNhanVien(
+        NhanVienId maNV, ThangNam thangNam,
+        TienThuong tienThuong, TienPhat tienPhat, PhuCap phuCap, MucLuong tienLuong)
     {
         MaNV = maNV;
-        ThangNhanLuong = thangNhanLuong;
-        Nam = nam;
+        ThangNam = thangNam;
         TienThuong = tienThuong;
         TienPhat = tienPhat;
         PhuCap = phuCap;
         TienLuong = tienLuong;
-        Id = $"{maNV}_{thangNhanLuong}_{nam}";
+        Id = $"{maNV.Value}_{thangNam.Thang}_{thangNam.Nam}";
     }
 
-    public static LuongNhanVien Create(string maNV, int thangNhanLuong, int nam, double tienThuong, double tienPhat, double phuCap, double tienLuong)
+    public static LuongNhanVien Create(
+        string maNV, int thang, int nam,
+        double tienThuong, double tienPhat, double phuCap, double tienLuong)
     {
-        return new LuongNhanVien(maNV, thangNhanLuong, nam, tienThuong, tienPhat, phuCap, tienLuong);
+        return new LuongNhanVien(
+            NhanVienId.From(maNV),
+            ThangNam.Create(thang, nam),
+            TienThuong.From((decimal)tienThuong),
+            TienPhat.From((decimal)tienPhat),
+            PhuCap.From((decimal)phuCap),
+            MucLuong.From((decimal)tienLuong));
     }
 
-    public void UpdateBonusAndPenalty(double tienThuong, double tienPhat)
+    public decimal CalculateTotalSalary() =>
+        TienLuong.Value + PhuCap.Value + TienThuong.Value - TienPhat.Value;
+
+    public void UpdateBonusAndPenalty(TienThuong thuong, TienPhat phat)
     {
-        TienThuong = tienThuong;
-        TienPhat = tienPhat;
+        TienThuong = thuong;
+        TienPhat = phat;
     }
 
-    public void UpdateSalary(double basicSalary, double phuCap)
+    public void UpdateSalary(MucLuong luong, PhuCap phuCap)
     {
-        TienLuong = basicSalary;
+        TienLuong = luong;
         PhuCap = phuCap;
-    }
-
-    public double CalculateTotalSalary()
-    {
-        return TienLuong + PhuCap + TienThuong - TienPhat;
     }
 }
