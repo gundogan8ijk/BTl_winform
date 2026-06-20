@@ -28,7 +28,7 @@ public class LoginHandler : ICommandHandler<LoginCommand, Result<LoginResultDto>
         try
         {
             var email = EmailAddress.From(request.Email);
-            var taiKhoan = await _repository.GetByEmailAsync(email.Value, cancellationToken);
+            var taiKhoan = await _repository.GetByIdAsync(email.Value, cancellationToken);
 
             if (taiKhoan == null || !_passwordHasher.VerifyPassword(taiKhoan.MatKhau, request.Password))
                 return Result<LoginResultDto>.Unauthorized();

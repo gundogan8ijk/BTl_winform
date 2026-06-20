@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using QuanLiNhanSu.Core.NhanVienAgg;
 using QuanLiNhanSu.Core.TaiKhoanAgg;
-using QuanLiNhanSu.Core.ChamCongAgg;
 using QuanLiNhanSu.Core.ThangCongAgg;
 using QuanLiNhanSu.Core.LuongNhanVienAgg;
 using QuanLiNhanSu.Core._ValueObjects.Enums;

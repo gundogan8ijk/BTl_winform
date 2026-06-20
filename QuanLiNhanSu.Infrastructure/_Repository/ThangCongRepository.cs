@@ -12,19 +12,7 @@ namespace QuanLiNhanSu.Infrastructure._Repository;
 
 public class ThangCongRepository : EfRepository<ThangCong>, IThangCongRepository
 {
-    private readonly AppDbContext _dbContext;
-
     public ThangCongRepository(AppDbContext dbContext) : base(dbContext)
     {
-        _dbContext = dbContext;
     }
-
-    public async Task<ThangCong?> GetThangCongAsync(NhanVienId maNV, ThangNam thangNam, CancellationToken cancellationToken = default)
-        => await _dbContext.ThangCongs
-            .FirstOrDefaultAsync(x => x.MaNV == maNV && x.ThangNam == thangNam, cancellationToken);
-
-    public async Task<List<ThangCong>> GetThangCongListAsync(ThangNam thangNam, CancellationToken cancellationToken = default)
-        => await _dbContext.ThangCongs
-            .Where(x => x.ThangNam == thangNam)
-            .ToListAsync(cancellationToken);
 }

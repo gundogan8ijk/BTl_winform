@@ -37,7 +37,7 @@ public class CreateNhanVienHandler : ICommandHandler<CreateNhanVienCommand, Resu
         {
             var id = NhanVienId.From(request.MaNV);
 
-            if (await _repository.ExistsByMaNVAsync(id, cancellationToken))
+            if (await _repository.GetByIdAsync(id, cancellationToken) != null)
                 return Result<string>.Conflict("Mã nhân viên đã tồn tại.");
 
             var nv = new CoreNhanVien(

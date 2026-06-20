@@ -6,6 +6,7 @@ using Ardalis.Result;
 using Mediator;
 using QuanLiNhanSu.Core.NhanVienAgg;
 using QuanLiNhanSu.Core._ValueObjects;
+using QuanLiNhanSu.Core.NhanVienAgg.Specifications;
 using CoreNhanVien = QuanLiNhanSu.Core.NhanVienAgg.NhanVien;
 
 namespace QuanLiNhanSu.UseCases.NhanVien;
@@ -28,12 +29,12 @@ public class GetNhanVienListHandler : IQueryHandler<GetNhanVienListQuery, Result
         if (!string.IsNullOrEmpty(request.MaNV))
         {
             var id = NhanVienId.From(request.MaNV);
-            var single = await _repository.GetByMaNVAsync(id, cancellationToken);
+            var single = await _repository.FirstOrDefaultAsync(new NhanVienByIdSpec(id), cancellationToken);
             list = single == null ? [] : [single];
         }
         else if (!string.IsNullOrEmpty(request.TenNV))
         {
-            list = await _repository.GetByTenNVAsync(request.TenNV, cancellationToken);
+            list = await _repository.ListAsync(new NhanVienByTenSpec(request.TenNV), cancellationToken);
         }
         else
         {

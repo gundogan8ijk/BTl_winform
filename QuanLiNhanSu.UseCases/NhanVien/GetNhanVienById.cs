@@ -5,6 +5,7 @@ using Ardalis.Result;
 using Mediator;
 using QuanLiNhanSu.Core.NhanVienAgg;
 using QuanLiNhanSu.Core._ValueObjects;
+using QuanLiNhanSu.Core.NhanVienAgg.Specifications;
 
 namespace QuanLiNhanSu.UseCases.NhanVien;
 
@@ -22,7 +23,7 @@ public class GetNhanVienByIdHandler : IQueryHandler<GetNhanVienByIdQuery, Result
     public async ValueTask<Result<NhanVienDto>> Handle(GetNhanVienByIdQuery request, CancellationToken cancellationToken)
     {
         var id = NhanVienId.From(request.MaNV);
-        var nv = await _repository.GetByMaNVAsync(id, cancellationToken);
+        var nv = await _repository.FirstOrDefaultAsync(new NhanVienByIdSpec(id), cancellationToken);
         if (nv == null)
             return Result<NhanVienDto>.NotFound("Không tìm thấy nhân viên.");
 

@@ -8,6 +8,4 @@ namespace QuanLiNhanSu.Core.ThangCongAgg;
 
 public interface IThangCongRepository : IRepository<ThangCong>
 {
-    Task<ThangCong?> GetThangCongAsync(NhanVienId maNV, ThangNam thangNam, CancellationToken cancellationToken = default);
-    Task<List<ThangCong>> GetThangCongListAsync(ThangNam thangNam, CancellationToken cancellationToken = default);
 }

@@ -32,7 +32,8 @@ public class UpdateThangCongCommandHandler : ICommandHandler<UpdateThangCongComm
             var maNV = NhanVienId.From(request.MaNV);
             var thangNam = ThangNam.Create(request.ThangTC, request.NamTC);
 
-            var thangCong = await _repository.GetThangCongAsync(maNV, thangNam, cancellationToken);
+            var tcId = $"{maNV.Value}_{thangNam.Thang}_{thangNam.Nam}";
+            var thangCong = await _repository.GetByIdAsync(tcId, cancellationToken);
             if (thangCong == null)
                 return Result.NotFound("Không tìm thấy dữ liệu chấm công cho tháng và năm này.");
 

@@ -9,7 +9,6 @@ global using QuanLiNhanSu.Core._ValueObjects.Enums;
 global using QuanLiNhanSu.Core.TaiKhoanAgg.ValueObjects;
 global using QuanLiNhanSu.Core.NhanVienAgg.ValueObjects;
 global using QuanLiNhanSu.Core.LuongNhanVienAgg.ValueObjects;
-global using QuanLiNhanSu.Core.ChamCongAgg;
 global using QuanLiNhanSu.Core.ThangCongAgg;
 global using QuanLiNhanSu.Core.ThangCongAgg.ValueObjects;
 

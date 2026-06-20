@@ -8,6 +8,7 @@ using Mediator;
 using QuanLiNhanSu.Core.LuongNhanVienAgg;
 using QuanLiNhanSu.Core.ThangCongAgg.ValueObjects;
 using QuanLiNhanSu.Core._ValueObjects;
+using QuanLiNhanSu.Core.LuongNhanVienAgg.Specifications;
 using CoreLuong = QuanLiNhanSu.Core.LuongNhanVienAgg.LuongNhanVien;
 
 namespace QuanLiNhanSu.UseCases.LuongNhanVien;
@@ -33,12 +34,12 @@ public class GetLuongListQueryHandler : IQueryHandler<GetLuongListQuery, Result<
             if (!string.IsNullOrEmpty(request.MaNV))
             {
                 var maNV = NhanVienId.From(request.MaNV);
-                var single = await _repository.GetByEmployeeMonthYearAsync(maNV, thangNam, cancellationToken);
+                var single = await _repository.FirstOrDefaultAsync(new LuongByMaNVThangNamSpec(maNV, thangNam), cancellationToken);
                 list = single == null ? [] : [single];
             }
             else
             {
-                list = await _repository.GetByMonthYearAsync(thangNam, cancellationToken);
+                list = await _repository.ListAsync(new LuongByThangNamSpec(thangNam), cancellationToken);
             }
 
             var dtos = list.Select(x => new LuongNhanVienDto(

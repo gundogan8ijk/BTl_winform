@@ -8,6 +8,4 @@ namespace QuanLiNhanSu.Core.LuongNhanVienAgg;
 
 public interface ILuongNhanVienRepository : IRepository<LuongNhanVien>
 {
-    Task<LuongNhanVien?> GetByEmployeeMonthYearAsync(NhanVienId maNV, ThangNam thangNam, CancellationToken cancellationToken = default);
-    Task<List<LuongNhanVien>> GetByMonthYearAsync(ThangNam thangNam, CancellationToken cancellationToken = default);
 }

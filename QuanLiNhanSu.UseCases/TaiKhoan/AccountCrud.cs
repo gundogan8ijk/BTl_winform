@@ -32,7 +32,7 @@ public class GetAccountQueryHandler : IQueryHandler<GetAccountQuery, Result<Acco
         try
         {
             var email = EmailAddress.From(request.Email);
-            var acc = await _repository.GetByEmailAsync(email.Value, cancellationToken);
+            var acc = await _repository.GetByIdAsync(email.Value, cancellationToken);
             if (acc == null) return Result<AccountDto>.NotFound("Không tìm thấy tài khoản.");
             return Result<AccountDto>.Success(new AccountDto(acc.Email, (double)acc.Quyen.Value));
         }
@@ -60,7 +60,7 @@ public class UpdateAccountHandler : ICommandHandler<UpdateAccountCommand, Result
         try
         {
             var email = EmailAddress.From(request.Email);
-            var acc = await _repository.GetByEmailAsync(email.Value, cancellationToken);
+            var acc = await _repository.GetByIdAsync(email.Value, cancellationToken);
             if (acc == null) return Result.NotFound("Không tìm thấy tài khoản.");
 
             acc.UpdateRole(QuyenNguoiDung.FromDouble(request.Quyen));
@@ -97,7 +97,7 @@ public class DeleteAccountHandler : ICommandHandler<DeleteAccountCommand, Result
         try
         {
             var email = EmailAddress.From(request.Email);
-            var acc = await _repository.GetByEmailAsync(email.Value, cancellationToken);
+            var acc = await _repository.GetByIdAsync(email.Value, cancellationToken);
             if (acc == null) return Result.NotFound("Không tìm thấy tài khoản.");
 
             await _repository.DeleteAsync(acc, cancellationToken);
@@ -118,7 +118,7 @@ public class GetAccountsQueryHandler : IQueryHandler<GetAccountsQuery, Result<Li
 
     public async ValueTask<Result<List<AccountDto>>> Handle(GetAccountsQuery request, CancellationToken cancellationToken)
     {
-        var list = await _repository.GetAllAsync(cancellationToken);
+        var list = await _repository.ListAsync(cancellationToken);
         var dtos = list.Select(x => new AccountDto(x.Email, (double)x.Quyen.Value)).ToList();
         return Result<List<AccountDto>>.Success(dtos);
     }

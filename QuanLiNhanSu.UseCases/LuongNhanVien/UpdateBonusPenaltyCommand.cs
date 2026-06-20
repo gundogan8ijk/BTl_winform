@@ -33,7 +33,8 @@ public class UpdateBonusPenaltyCommandHandler : ICommandHandler<UpdateBonusPenal
             var maNV = NhanVienId.From(request.MaNV);
             var thangNam = ThangNam.Create(request.Thang, request.Nam);
 
-            var luong = await _repository.GetByEmployeeMonthYearAsync(maNV, thangNam, cancellationToken);
+            var luongId = $"{maNV.Value}_{thangNam.Thang}_{thangNam.Nam}";
+            var luong = await _repository.GetByIdAsync(luongId, cancellationToken);
             if (luong == null)
                 return Result.NotFound("Không tìm thấy thông tin lương cho tháng và năm này.");
 

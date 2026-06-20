@@ -7,7 +7,8 @@ using Mediator;
 using QuanLiNhanSu.Core.ThangCongAgg.ValueObjects;
 using QuanLiNhanSu.Core.NhanVienAgg.ValueObjects;
 using ThangCong = QuanLiNhanSu.Core.ThangCongAgg.ThangCong;
-using IThangCongRepository = QuanLiNhanSu.Core.ThangCongAgg.IThangCongRepository;
+using QuanLiNhanSu.Core.ThangCongAgg;
+using QuanLiNhanSu.Core.ThangCongAgg.Specifications;
 using ThangCongDto = QuanLiNhanSu.UseCases.ThangCong.ThangCongDto;
 
 namespace QuanLiNhanSu.UseCases.ChamCong;
@@ -31,12 +32,12 @@ public class GetChamCongQueryHandler : IQueryHandler<GetChamCongQuery, Result<Li
         if (!string.IsNullOrEmpty(request.MaNV))
         {
             var maNV = NhanVienId.From(request.MaNV);
-            var single = await _repository.GetThangCongAsync(maNV, thangNam, cancellationToken);
+            var single = await _repository.FirstOrDefaultAsync(new ThangCongByMaNVThangNamSpec(maNV, thangNam), cancellationToken);
             list = single == null ? [] : [single];
         }
         else
         {
-            list = await _repository.GetThangCongListAsync(thangNam, cancellationToken);
+            list = await _repository.ListAsync(new ThangCongByThangNamSpec(thangNam), cancellationToken);
         }
 
         var dtos = list.Select(x => new ThangCongDto(

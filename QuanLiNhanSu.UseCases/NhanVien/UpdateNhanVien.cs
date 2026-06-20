@@ -34,7 +34,7 @@ public class UpdateNhanVienHandler : ICommandHandler<UpdateNhanVienCommand, Resu
         try
         {
             var id = NhanVienId.From(request.MaNV);
-            var nv = await _repository.GetByMaNVAsync(id, cancellationToken);
+            var nv = await _repository.GetByIdAsync(id, cancellationToken);
             if (nv == null)
                 return Result.NotFound("Không tìm thấy nhân viên.");
 

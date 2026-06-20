@@ -29,7 +29,7 @@ public class RegisterHandler : ICommandHandler<RegisterCommand, Result<string>>
         {
             var email = EmailAddress.From(request.Email);
 
-            if (await _repository.ExistsByEmailAsync(email.Value, cancellationToken))
+            if (await _repository.GetByIdAsync(email.Value, cancellationToken) != null)
                 return Result<string>.Conflict("Email này đã được đăng ký.");
 
             var hashedPassword = _passwordHasher.HashPassword(request.Password);

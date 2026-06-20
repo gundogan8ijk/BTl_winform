@@ -13,19 +13,7 @@ namespace QuanLiNhanSu.Infrastructure._Repository;
 
 public class LuongNhanVienRepository : EfRepository<LuongNhanVien>, ILuongNhanVienRepository
 {
-    private readonly AppDbContext _dbContext;
-
     public LuongNhanVienRepository(AppDbContext dbContext) : base(dbContext)
     {
-        _dbContext = dbContext;
     }
-
-    public async Task<LuongNhanVien?> GetByEmployeeMonthYearAsync(NhanVienId maNV, ThangNam thangNam, CancellationToken cancellationToken = default)
-        => await _dbContext.LuongNhanViens
-            .FirstOrDefaultAsync(x => x.MaNV == maNV && x.ThangNam == thangNam, cancellationToken);
-
-    public async Task<List<LuongNhanVien>> GetByMonthYearAsync(ThangNam thangNam, CancellationToken cancellationToken = default)
-        => await _dbContext.LuongNhanViens
-            .Where(x => x.ThangNam == thangNam)
-            .ToListAsync(cancellationToken);
 }
