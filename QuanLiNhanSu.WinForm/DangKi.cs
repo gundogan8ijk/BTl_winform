@@ -16,10 +16,11 @@ namespace QuanLiNhanSu
             _mediator = Program.ServiceProvider.GetRequiredService<IMediator>();
         }
 
-        private void btn_Dangki_Click(object sender, EventArgs e)
+        private async void btn_Dangki_Click(object sender, EventArgs e)
         {
             try
             {
+                btn_Dangki.Enabled = false;
                 string email = txt_emailDK.Text.Trim();
                 string password = txt_pass1DK.Text.Trim();
                 string confirmPassword = txt_pass2DK.Text.Trim();
@@ -34,7 +35,7 @@ namespace QuanLiNhanSu
                 if (rdb_Admin.Checked) quyen = 0;
                 else if (rdb_User.Checked) quyen = 1;
 
-                var result = _mediator.Send(new RegisterCommand(email, password, quyen)).AsTask().GetAwaiter().GetResult();
+                var result = await _mediator.Send(new RegisterCommand(email, password, quyen));
 
                 if (result.IsSuccess)
                 {
@@ -54,6 +55,10 @@ namespace QuanLiNhanSu
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
+            }
+            finally
+            {
+                btn_Dangki.Enabled = true;
             }
         }
 

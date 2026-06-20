@@ -23,9 +23,9 @@ namespace QuanLiNhanSu.User_Control
             _mediator = Program.ServiceProvider.GetRequiredService<IMediator>();
         }
 
-        private void Taikhoan_Load(object sender, EventArgs e)
+        private async void Taikhoan_Load(object sender, EventArgs e)
         {
-            HienThiThongtin();
+            await HienThiThongtin();
             NotEnabledChucNang();
             btn_TKXoa.Enabled = false;
             btn_TKSua.Enabled = false;
@@ -48,9 +48,9 @@ namespace QuanLiNhanSu.User_Control
             return table;
         }
 
-        private void HienThiThongtin()
+        private async Task HienThiThongtin()
         {
-            var result = _mediator.Send(new GetAccountsQuery()).AsTask().GetAwaiter().GetResult();
+            var result = await _mediator.Send(new GetAccountsQuery());
             if (result.IsSuccess)
             {
                 ds = new DataSet();
@@ -81,7 +81,7 @@ namespace QuanLiNhanSu.User_Control
             cb_TK_Quyen.Enabled = false;
         }
 
-        private void ThemTK()
+        private async Task ThemTK()
         {
             try
             {
@@ -89,11 +89,11 @@ namespace QuanLiNhanSu.User_Control
                 string matkhau = txt_TK_matkhau.Text.Trim();
                 double quyen = cb_TK_Quyen.SelectedIndex == 0 ? 0 : 1;
 
-                var result = _mediator.Send(new RegisterCommand(email, matkhau, quyen)).AsTask().GetAwaiter().GetResult();
+                var result = await _mediator.Send(new RegisterCommand(email, matkhau, quyen));
                 if (result.IsSuccess)
                 {
                     MessageBox.Show("Thêm tài khoản thành công!");
-                    HienThiThongtin();
+                    await HienThiThongtin();
                 }
                 else
                 {
@@ -105,11 +105,11 @@ namespace QuanLiNhanSu.User_Control
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
             XoaDuLieu();
-            HienThiThongtin();
+            await HienThiThongtin();
             NotEnabledChucNang();
         }
 
-        private void SuaTK()
+        private async Task SuaTK()
         {
             try
             {
@@ -119,11 +119,11 @@ namespace QuanLiNhanSu.User_Control
                 string matkhau = txt_TK_matkhau.Text.Trim();
                 double quyen = cb_TK_Quyen.SelectedIndex == 0 ? 0 : 1;
 
-                var result = _mediator.Send(new UpdateAccountCommand(email, matkhau, quyen)).AsTask().GetAwaiter().GetResult();
+                var result = await _mediator.Send(new UpdateAccountCommand(email, matkhau, quyen));
                 if (result.IsSuccess)
                 {
                     MessageBox.Show("Chỉnh sửa tài khoản thành công!");
-                    HienThiThongtin();
+                    await HienThiThongtin();
                 }
                 else
                 {
@@ -140,19 +140,19 @@ namespace QuanLiNhanSu.User_Control
             btn_TKXoa.Enabled = false;
         }
 
-        private void XoaTaiKhoan()
+        private async Task XoaTaiKhoan()
         {
             try
             {
                 if (vt == -1) return;
 
                 string email = txt_TK_ten.Text.Trim();
-                var result = _mediator.Send(new DeleteAccountCommand(email)).AsTask().GetAwaiter().GetResult();
+                var result = await _mediator.Send(new DeleteAccountCommand(email));
 
                 if (result.IsSuccess)
                 {
                     MessageBox.Show("Xóa tài khoản thành công!");
-                    HienThiThongtin();
+                    await HienThiThongtin();
                 }
                 else
                 {
@@ -165,16 +165,16 @@ namespace QuanLiNhanSu.User_Control
             }
         }
 
-        private void btn_TK_Luu_Click(object sender, EventArgs e)
+        private async void btn_TK_Luu_Click(object sender, EventArgs e)
         {
-            if (cn == 1) ThemTK();
-            else if (cn == 2) SuaTK();
+            if (cn == 1) await ThemTK();
+            else if (cn == 2) await SuaTK();
         }
 
-        private void btn_TKtimkiem_Click(object sender, EventArgs e)
+        private async void btn_TKtimkiem_Click(object sender, EventArgs e)
         {
             string tentk = txt_TK_Tktentaikhoan.Text.Trim();
-            var result = _mediator.Send(new GetAccountsQuery(tentk)).AsTask().GetAwaiter().GetResult();
+            var result = await _mediator.Send(new GetAccountsQuery(tentk));
             if (result.IsSuccess)
             {
                 ds = new DataSet();
@@ -218,13 +218,13 @@ namespace QuanLiNhanSu.User_Control
             btn_TKXoa.Enabled = false;
         }
 
-        private void btn_TKXoa_Click(object sender, EventArgs e)
+        private async void btn_TKXoa_Click(object sender, EventArgs e)
         {
             DialogResult rs = MessageBox.Show("Bạn có muốn xóa tài khoản này không?", "Thông báo",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (rs == DialogResult.Yes)
             {
-                XoaTaiKhoan();
+                await XoaTaiKhoan();
                 XoaDuLieu();
                 NotEnabledChucNang();
                 btn_TKSua.Enabled = false;

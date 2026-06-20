@@ -21,8 +21,10 @@ public static class InfrastructureServiceExtensions
         this IServiceCollection services,
         IConfiguration config)
     {
-        string? connectionString = config.GetConnectionString("DefaultConnection") 
-                                  ?? @"Data Source=LAPTOP-FV6UVTJE;Initial Catalog=QuanLiNhanVien;Integrated Security=True;Encrypt=False";
+        string connectionString = config.GetConnectionString("DefaultConnection")
+            ?? throw new InvalidOperationException(
+                "Connection string 'DefaultConnection' không tìm thấy trong appsettings.json. " +
+                "Vui lòng cấu hình Data Source trong file appsettings.json.");
 
         services.AddDbContext<AppDbContext>(options =>
         {

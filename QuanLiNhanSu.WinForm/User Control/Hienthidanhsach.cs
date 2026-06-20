@@ -24,9 +24,9 @@ namespace QuanLiNhanSu
             this.Load += Hienthidanhsach_Load;
         }
 
-        private void Hienthidanhsach_Load(object sender, EventArgs e)
+        private async void Hienthidanhsach_Load(object sender, EventArgs e)
         {
-            HienThiThongtin();
+            await HienThiThongtin();
             gb_thongtin.Enabled = false;
             btn_Sua.Enabled = false;
             btn_Xoa.Enabled = false;
@@ -62,9 +62,9 @@ namespace QuanLiNhanSu
             return table;
         }
 
-        private void HienThiThongtin()
+        private async Task HienThiThongtin()
         {
-            var result = _mediator.Send(new GetNhanVienListQuery()).AsTask().GetAwaiter().GetResult();
+            var result = await _mediator.Send(new GetNhanVienListQuery());
             if (result.IsSuccess)
             {
                 ds = new DataSet();
@@ -74,9 +74,9 @@ namespace QuanLiNhanSu
             }
         }
 
-        private void TimKiemTheoMa(string manv)
+        private async Task TimKiemTheoMa(string manv)
         {
-            var result = _mediator.Send(new GetNhanVienListQuery(MaNV: manv)).AsTask().GetAwaiter().GetResult();
+            var result = await _mediator.Send(new GetNhanVienListQuery(MaNV: manv));
             if (result.IsSuccess)
             {
                 ds = new DataSet();
@@ -86,9 +86,9 @@ namespace QuanLiNhanSu
             }
         }
 
-        private void TimKiemTheoTen(string tennv)
+        private async Task TimKiemTheoTen(string tennv)
         {
-            var result = _mediator.Send(new GetNhanVienListQuery(TenNV: tennv)).AsTask().GetAwaiter().GetResult();
+            var result = await _mediator.Send(new GetNhanVienListQuery(TenNV: tennv));
             if (result.IsSuccess)
             {
                 ds = new DataSet();
@@ -98,7 +98,7 @@ namespace QuanLiNhanSu
             }
         }
 
-        private void ThemNhanVien()
+        private async Task ThemNhanVien()
         {
             try
             {
@@ -112,14 +112,14 @@ namespace QuanLiNhanSu
                 string diaChi = txt_Diachi.Text.Trim();
                 int thangVaoLam = DateTime.Now.Month;
 
-                var result = _mediator.Send(new CreateNhanVienCommand(
+                var result = await _mediator.Send(new CreateNhanVienCommand(
                     maNV, tenNV, ngaySinh, gioiTinh, sdt, email, chucVu, diaChi, thangVaoLam
-                )).AsTask().GetAwaiter().GetResult();
+                ));
 
                 if (result.IsSuccess)
                 {
                     MessageBox.Show("Thêm nhân viên thành công!");
-                    HienThiThongtin();
+                    await HienThiThongtin();
                 }
                 else
                 {
@@ -137,7 +137,7 @@ namespace QuanLiNhanSu
             }
         }
 
-        private void SuaNhanVien()
+        private async Task SuaNhanVien()
         {
             try
             {
@@ -152,14 +152,14 @@ namespace QuanLiNhanSu
                 string chucVu = cb_Chucvu.Text.Trim();
                 string diaChi = txt_Diachi.Text.Trim();
 
-                var result = _mediator.Send(new UpdateNhanVienCommand(
+                var result = await _mediator.Send(new UpdateNhanVienCommand(
                     maNV, tenNV, ngaySinh, gioiTinh, sdt, email, chucVu, diaChi
-                )).AsTask().GetAwaiter().GetResult();
+                ));
 
                 if (result.IsSuccess)
                 {
                     MessageBox.Show("Chỉnh sửa nhân viên thành công!");
-                    HienThiThongtin();
+                    await HienThiThongtin();
                 }
                 else
                 {
@@ -179,17 +179,17 @@ namespace QuanLiNhanSu
             }
         }
 
-        private void XoaNhanVien()
+        private async Task XoaNhanVien()
         {
             try
             {
                 string manv = txt_Masv.Text.Trim();
-                var result = _mediator.Send(new DeleteNhanVienCommand(manv)).AsTask().GetAwaiter().GetResult();
+                var result = await _mediator.Send(new DeleteNhanVienCommand(manv));
 
                 if (result.IsSuccess)
                 {
                     MessageBox.Show("Xóa nhân viên thành công!");
-                    HienThiThongtin();
+                    await HienThiThongtin();
                 }
                 else
                 {
@@ -213,18 +213,18 @@ namespace QuanLiNhanSu
             txt_TKTen.Clear();
         }
 
-        private void btn_TImkiem_Click(object sender, EventArgs e)
+        private async void btn_TImkiem_Click(object sender, EventArgs e)
         {
             string manv = txt_TKMa.Text.Trim();
             string tennv = txt_TKTen.Text.Trim();
 
             if (!string.IsNullOrEmpty(manv))
             {
-                TimKiemTheoMa(manv);
+                await TimKiemTheoMa(manv);
             }
             else if (!string.IsNullOrEmpty(tennv))
             {
-                TimKiemTheoTen(tennv);
+                await TimKiemTheoTen(tennv);
             }
             else
             {
@@ -232,28 +232,28 @@ namespace QuanLiNhanSu
             }
         }
 
-        private void btn_Xoa_Click(object sender, EventArgs e)
+        private async void btn_Xoa_Click(object sender, EventArgs e)
         {
             DialogResult rs = MessageBox.Show("Bạn có muốn xóa nhân viên này không?", "Thông báo",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (rs == DialogResult.Yes)
             {
-                XoaNhanVien();
+                await XoaNhanVien();
                 XoaForm();
             }
         }
 
-        private void btn_Luu_Click(object sender, EventArgs e)
+        private async void btn_Luu_Click(object sender, EventArgs e)
         {
-            if (chucnang == 1) ThemNhanVien();
-            else if (chucnang == 2) SuaNhanVien();
+            if (chucnang == 1) await ThemNhanVien();
+            else if (chucnang == 2) await SuaNhanVien();
         }
 
-        private void btn_Them_Click(object sender, EventArgs e)
+        private async void btn_Them_Click(object sender, EventArgs e)
         {
             chucnang = 1;
             gb_thongtin.Enabled = true;
-            HienThiThongtin();
+            await HienThiThongtin();
             XoaForm();
         }
 

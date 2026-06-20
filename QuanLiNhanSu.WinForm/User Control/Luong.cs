@@ -53,7 +53,7 @@ namespace QuanLiNhanSu
             if (dgv_Hienthiluong.Columns.Contains("Column2"))
                 dgv_Hienthiluong.Columns["Column2"].DefaultCellStyle.Format = "N0";
 
-            HienThiLuong();
+            _ = HienThiLuong();
         }
 
         private DataTable ToDataTable(List<LuongNhanVienDto> list)
@@ -84,9 +84,9 @@ namespace QuanLiNhanSu
             return table;
         }
 
-        private void HienThiLuong()
+        private async Task HienThiLuong()
         {
-            var result = _mediator.Send(new GetLuongListQuery(thangluong, namluong)).AsTask().GetAwaiter().GetResult();
+            var result = await _mediator.Send(new GetLuongListQuery(thangluong, namluong));
             if (result.IsSuccess)
             {
                 ds = new DataSet();
@@ -124,9 +124,9 @@ namespace QuanLiNhanSu
             btnLuu.Enabled = true;
         }
 
-        private void btn_TinhLuong_Click(object sender, EventArgs e)
+        private async void btn_TinhLuong_Click(object sender, EventArgs e)
         {
-            HienThiLuong();
+            await HienThiLuong();
             XoaForm();
             AnTxt();
         }
@@ -204,7 +204,7 @@ namespace QuanLiNhanSu
             txt_Tienphat.ReadOnly = false;
         }
 
-        private void btnLuu_Click(object sender, EventArgs e)
+        private async void btnLuu_Click(object sender, EventArgs e)
         {
             try
             {
@@ -213,16 +213,16 @@ namespace QuanLiNhanSu
                     if (vt == -1) return;
 
                     string mnv = txtMnv.Text.Trim();
-                    var result = _mediator.Send(new UpdateBonusPenaltyCommand(
+                    var result = await _mediator.Send(new UpdateBonusPenaltyCommand(
                         mnv, thangluong, namluong, tienthuong, tienphat
-                    )).AsTask().GetAwaiter().GetResult();
+                    ));
 
                     if (result.IsSuccess)
                     {
                         MessageBox.Show("Bạn chỉnh sửa thông tin thành công!\n tiền thưởng: " + tienthuong + "\t tiền phạt: " + tienphat, "tháng: " + thangluong + "\tnăm: " + namluong, MessageBoxButtons.OK);
                         XoaForm();
                         AnTxt();
-                        HienThiLuong();
+                        await HienThiLuong();
                     }
                     else
                     {
@@ -245,11 +245,11 @@ namespace QuanLiNhanSu
             manv = txtMnv.Text;
         }
 
-        private void hienthitheoma(string timtheoma)
+        private async Task hienthitheoma(string timtheoma)
         {
             try
             {
-                var result = _mediator.Send(new GetLuongListQuery(thangluong, namluong, timtheoma)).AsTask().GetAwaiter().GetResult();
+                var result = await _mediator.Send(new GetLuongListQuery(thangluong, namluong, timtheoma));
                 if (result.IsSuccess)
                 {
                     ds = new DataSet();
@@ -270,9 +270,9 @@ namespace QuanLiNhanSu
             timtheoma = txtTimMa.Text;
         }
 
-        private void btnTimma_Click(object sender, EventArgs e)
+        private async void btnTimma_Click(object sender, EventArgs e)
         {
-            hienthitheoma(timtheoma);
+            await hienthitheoma(timtheoma);
             XoaForm();
             AnTxt();
             btnTimma.Enabled = false;

@@ -32,7 +32,7 @@ namespace QuanLiNhanSu.User_Control
                 dGVchamcong.Columns[3].DefaultCellStyle.BackColor = Color.LightGreen;
             
             combbnam.SelectedIndex = 2;
-            HienThiChamCong();
+            _ = HienThiChamCong();
         }
 
         private DataTable ToDataTable(List<ThangCongDto> list)
@@ -72,12 +72,12 @@ namespace QuanLiNhanSu.User_Control
             return table;
         }
 
-        private void HienThiChamCong()
+        private async Task HienThiChamCong()
         {
             int t = int.Parse(cbbthang);
             int n = int.Parse(cbbnam);
 
-            var result = _mediator.Send(new GetChamCongQuery(t, n)).AsTask().GetAwaiter().GetResult();
+            var result = await _mediator.Send(new GetChamCongQuery(t, n));
             if (result.IsSuccess)
             {
                 ds = new DataSet();
@@ -111,10 +111,10 @@ namespace QuanLiNhanSu.User_Control
             cbbnam = combbnam.SelectedItem.ToString().Trim();
         }
 
-        private void btnxemcong_Click(object sender, EventArgs e)
+        private async void btnxemcong_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(manv)) hienthitheoma(manv);
-            else HienThiChamCong();
+            if (!string.IsNullOrEmpty(manv)) await hienthitheoma(manv);
+            else await HienThiChamCong();
         }
 
         private void textmanv_TextChanged(object sender, EventArgs e)
@@ -122,12 +122,12 @@ namespace QuanLiNhanSu.User_Control
             manv = textmanv.Text.Trim();
         }
 
-        private void hienthitheoma(string mnv)
+        private async Task hienthitheoma(string mnv)
         {
             int t = int.Parse(cbbthang);
             int n = int.Parse(cbbnam);
 
-            var result = _mediator.Send(new GetChamCongQuery(t, n, mnv)).AsTask().GetAwaiter().GetResult();
+            var result = await _mediator.Send(new GetChamCongQuery(t, n, mnv));
             if (result.IsSuccess)
             {
                 ds = new DataSet();

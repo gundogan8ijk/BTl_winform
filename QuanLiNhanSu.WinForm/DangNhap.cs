@@ -22,14 +22,15 @@ namespace QuanLiNhanSu
         {
         }
 
-        private void btn_Dangnhap_Click(object sender, EventArgs e)
+        private async void btn_Dangnhap_Click(object sender, EventArgs e)
         {
             try
             {
+                btn_Dangnhap.Enabled = false;
                 string email = txt_Taikhoan.Text.Trim();
                 string matkhau = txt_matkhau.Text.Trim();
 
-                var result = _mediator.Send(new LoginCommand(email, matkhau)).AsTask().GetAwaiter().GetResult();
+                var result = await _mediator.Send(new LoginCommand(email, matkhau));
 
                 if (result.IsSuccess)
                 {
@@ -46,6 +47,10 @@ namespace QuanLiNhanSu
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
+            }
+            finally
+            {
+                btn_Dangnhap.Enabled = true;
             }
         }
 
