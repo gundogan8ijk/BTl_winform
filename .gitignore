@@ -1,0 +1,34 @@
+## Visual Studio / .NET
+.vs/
+*.user
+*.suo
+*.userprefs
+
+## Build outputs
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+!**/[Pp]ackages/repositories.config
+
+## Backup / database files
+*.bak
+*.mdf
+*.ldf
+
+## Sensitive config (copy appsettings.json.example để cấu hình local)
+# appsettings.json đã dùng YOUR_SERVER placeholder - OK để commit
+
+## OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+## Rider
+.idea/
