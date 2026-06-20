@@ -7,6 +7,7 @@ using System.Data;
 using QuanLiNhanSu.Core.NhanVienAgg;
 using QuanLiNhanSu.Core.TaiKhoanAgg;
 using QuanLiNhanSu.Core.ChamCongAgg;
+using QuanLiNhanSu.Core.ThangCongAgg;
 using QuanLiNhanSu.Core.LuongNhanVienAgg;
 using QuanLiNhanSu.Infrastructure.Data.Context;
 using QuanLiNhanSu.Infrastructure.Data.Models;
@@ -52,6 +53,7 @@ public static class InfrastructureServiceExtensions
         services.AddScoped<INhanVienRepository, NhanVienRepository>();
         services.AddScoped<ITaiKhoanRepository, TaiKhoanRepository>();
         services.AddScoped<IChamCongRepository, ChamCongRepository>();
+        services.AddScoped<IThangCongRepository, ThangCongRepository>();
         services.AddScoped<ILuongNhanVienRepository, LuongNhanVienRepository>();
 
         return services;

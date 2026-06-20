@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using QuanLiNhanSu.Core.LuongNhanVienAgg;
+using QuanLiNhanSu.Core.LuongNhanVienAgg.ValueObjects;
+using QuanLiNhanSu.Core.NhanVienAgg.ValueObjects;
+using QuanLiNhanSu.Core.ThangCongAgg.ValueObjects;
 using QuanLiNhanSu.Core._ValueObjects;
 
 namespace QuanLiNhanSu.Infrastructure._Config;

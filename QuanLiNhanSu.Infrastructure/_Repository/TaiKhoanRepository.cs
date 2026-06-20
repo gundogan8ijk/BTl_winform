@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -16,14 +18,13 @@ public class TaiKhoanRepository : EfRepository<TaiKhoan>, ITaiKhoanRepository
     }
 
     public async Task<TaiKhoan?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
-    {
-        return await _dbContext.TaiKhoans
+        => await _dbContext.TaiKhoans
             .FirstOrDefaultAsync(x => x.Id == email, cancellationToken);
-    }
 
     public async Task<bool> ExistsByEmailAsync(string email, CancellationToken cancellationToken = default)
-    {
-        return await _dbContext.TaiKhoans
+        => await _dbContext.TaiKhoans
             .AnyAsync(x => x.Id == email, cancellationToken);
-    }
+
+    public async Task<List<TaiKhoan>> GetAllAsync(CancellationToken cancellationToken = default)
+        => await _dbContext.TaiKhoans.ToListAsync(cancellationToken);
 }

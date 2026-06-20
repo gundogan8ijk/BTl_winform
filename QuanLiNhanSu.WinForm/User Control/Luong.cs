@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using Mediator;
-using QuanLiNhanSu.UseCases.LuongApp;
+using QuanLiNhanSu.UseCases.LuongNhanVien;
 
 namespace QuanLiNhanSu
 {

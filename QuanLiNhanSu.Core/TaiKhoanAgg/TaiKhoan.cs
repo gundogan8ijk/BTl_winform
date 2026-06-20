@@ -20,8 +20,8 @@ public class TaiKhoan : EntityBase<TaiKhoan, string>, IAggregateRoot
         Guard.Against.NullOrWhiteSpace(matKhau, nameof(matKhau));
         Guard.Against.OutOfRange(quyen, nameof(quyen), 0, 1);
 
-        Id = new Email(email).Value;
-        MatKhau = new MatKhau(matKhau).Value;
+        Id = EmailAddress.From(email).Value;
+        MatKhau = ValueObjects.MatKhau.From(matKhau).Value;
         Quyen = quyen;
     }
 
@@ -33,13 +33,13 @@ public class TaiKhoan : EntityBase<TaiKhoan, string>, IAggregateRoot
         Guard.Against.NullOrWhiteSpace(newPassword, nameof(newPassword));
         if (MatKhau != currentPassword)
             throw new InvalidOperationException("Mật khẩu hiện tại không đúng.");
-        MatKhau = new MatKhau(newPassword).Value;
+        MatKhau = ValueObjects.MatKhau.From(newPassword).Value;
     }
 
     public void SetPassword(string newPassword)
     {
         Guard.Against.NullOrWhiteSpace(newPassword, nameof(newPassword));
-        MatKhau = new MatKhau(newPassword).Value;
+        MatKhau = ValueObjects.MatKhau.From(newPassword).Value;
     }
 
     public void UpdateRole(double newQuyen)

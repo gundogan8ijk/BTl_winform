@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using Mediator;
-using QuanLiNhanSu.UseCases.ChamCongApp;
+using QuanLiNhanSu.UseCases.ChamCong;
+using QuanLiNhanSu.UseCases.ThangCong;
 
 namespace QuanLiNhanSu.User_Control
 {

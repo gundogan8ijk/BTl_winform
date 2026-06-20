@@ -2,7 +2,7 @@ using System;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using Mediator;
-using QuanLiNhanSu.UseCases.Authen.Register;
+using QuanLiNhanSu.UseCases.TaiKhoan.Register;
 
 namespace QuanLiNhanSu
 {

@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using QuanLiNhanSu.Core.NhanVienAgg;
+using QuanLiNhanSu.Core.TaiKhoanAgg;
 using QuanLiNhanSu.Core.ChamCongAgg;
+using QuanLiNhanSu.Core.ThangCongAgg;
 using QuanLiNhanSu.Core.LuongNhanVienAgg;
 using QuanLiNhanSu.Infrastructure.Data.Models;
 using System.Reflection;
@@ -15,6 +17,7 @@ public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, 
     }
 
     public DbSet<NhanVien> NhanViens => Set<NhanVien>();
+    public DbSet<TaiKhoan> TaiKhoans => Set<TaiKhoan>();
     public DbSet<ChamCong> ChamCongs => Set<ChamCong>();
     public DbSet<ThangCong> ThangCongs => Set<ThangCong>();
     public DbSet<LuongNhanVien> LuongNhanViens => Set<LuongNhanVien>();

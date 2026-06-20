@@ -4,6 +4,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using QuanLiNhanSu.Core.NhanVienAgg;
+using QuanLiNhanSu.Core.NhanVienAgg.ValueObjects;
+using QuanLiNhanSu.Core._ValueObjects;
 using QuanLiNhanSu.Infrastructure.Data.Context;
 
 namespace QuanLiNhanSu.Infrastructure._Repository;
@@ -17,22 +19,16 @@ public class NhanVienRepository : EfRepository<NhanVien>, INhanVienRepository
         _dbContext = dbContext;
     }
 
-    public async Task<NhanVien?> GetByMaNVAsync(string maNV, CancellationToken cancellationToken = default)
-    {
-        return await _dbContext.NhanViens
+    public async Task<NhanVien?> GetByMaNVAsync(NhanVienId maNV, CancellationToken cancellationToken = default)
+        => await _dbContext.NhanViens
             .FirstOrDefaultAsync(x => x.Id == maNV, cancellationToken);
-    }
 
     public async Task<List<NhanVien>> GetByTenNVAsync(string tenNV, CancellationToken cancellationToken = default)
-    {
-        return await _dbContext.NhanViens
-            .Where(x => x.TenNV.Contains(tenNV))
+        => await _dbContext.NhanViens
+            .Where(x => x.TenNV.Value.Contains(tenNV))
             .ToListAsync(cancellationToken);
-    }
 
-    public async Task<bool> ExistsByMaNVAsync(string maNV, CancellationToken cancellationToken = default)
-    {
-        return await _dbContext.NhanViens
+    public async Task<bool> ExistsByMaNVAsync(NhanVienId maNV, CancellationToken cancellationToken = default)
+        => await _dbContext.NhanViens
             .AnyAsync(x => x.Id == maNV, cancellationToken);
-    }
 }

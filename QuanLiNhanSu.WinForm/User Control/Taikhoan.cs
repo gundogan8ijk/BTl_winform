@@ -5,8 +5,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using Mediator;
-using QuanLiNhanSu.UseCases.Authen;
-using QuanLiNhanSu.UseCases.Authen.Register;
+using QuanLiNhanSu.UseCases.TaiKhoan;
+using QuanLiNhanSu.UseCases.TaiKhoan.Register;
 
 namespace QuanLiNhanSu.User_Control
 {
@@ -174,13 +174,20 @@ namespace QuanLiNhanSu.User_Control
         private async void btn_TKtimkiem_Click(object sender, EventArgs e)
         {
             string tentk = txt_TK_Tktentaikhoan.Text.Trim();
-            var result = await _mediator.Send(new GetAccountsQuery(tentk));
-            if (result.IsSuccess)
+            if (!string.IsNullOrWhiteSpace(tentk))
             {
-                ds = new DataSet();
-                var table = ToDataTable(result.Value);
-                ds.Tables.Add(table);
-                dgv_TaiKhoan.DataSource = table;
+                var result = await _mediator.Send(new GetAccountQuery(tentk));
+                if (result.IsSuccess)
+                {
+                    ds = new DataSet();
+                    var table = ToDataTable(new List<AccountDto> { result.Value });
+                    ds.Tables.Add(table);
+                    dgv_TaiKhoan.DataSource = table;
+                }
+            }
+            else
+            {
+                await HienThiThongtin();
             }
         }
 

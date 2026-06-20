@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using QuanLiNhanSu.Core.NhanVienAgg;
+using QuanLiNhanSu.Core.NhanVienAgg.ValueObjects;
+using QuanLiNhanSu.Core.TaiKhoanAgg.ValueObjects;
 using QuanLiNhanSu.Core._ValueObjects;
 using QuanLiNhanSu.Core._ValueObjects.Enums;
 

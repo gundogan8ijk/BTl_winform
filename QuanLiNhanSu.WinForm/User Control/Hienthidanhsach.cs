@@ -6,7 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using Mediator;
-using QuanLiNhanSu.UseCases.NhanVienApp;
+using QuanLiNhanSu.UseCases.NhanVien;
 
 namespace QuanLiNhanSu
 {
