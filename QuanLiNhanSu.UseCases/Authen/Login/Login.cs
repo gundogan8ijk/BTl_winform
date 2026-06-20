@@ -28,8 +28,7 @@ public class LoginHandler : ICommandHandler<LoginCommand, Result<LoginResultDto>
             return Result<LoginResultDto>.Unauthorized();
         }
 
-        // Return a mock token for verification
-        var token = $"mock-jwt-token-for-{taiKhoan.Email}";
+        var token = $"session-{taiKhoan.Email}-{DateTime.UtcNow.Ticks}";
         return Result<LoginResultDto>.Success(new LoginResultDto(taiKhoan.Email, taiKhoan.Quyen, token));
     }
 }

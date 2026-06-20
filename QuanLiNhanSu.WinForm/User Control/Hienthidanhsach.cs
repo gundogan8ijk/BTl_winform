@@ -274,7 +274,7 @@ namespace QuanLiNhanSu
             txt_Masv.Text = row["MaNV"].ToString().Trim();
             txt_Tennv.Text = row["TenNV"].ToString().Trim();
 
-            string[] ns = row["Ngaysinh"].ToString().Trim().Split('/');
+            string[] ns = row["NgaySinh"].ToString().Trim().Split('/');
             if (ns.Length >= 3)
             {
                 string ngay = ns[0];

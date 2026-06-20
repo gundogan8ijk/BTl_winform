@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using Mediator;
@@ -21,9 +22,9 @@ namespace QuanLiNhanSu
             _mediator = Program.ServiceProvider.GetRequiredService<IMediator>();
         }
 
-        private void Xuatds_Load(object sender, EventArgs e)
+        private async void Xuatds_Load(object sender, EventArgs e)
         {
-            Hienthidanhsach();
+            await Hienthidanhsach();
         }
 
         private DataTable ToDataTable(List<NhanVienDto> list)
@@ -37,7 +38,7 @@ namespace QuanLiNhanSu
             table.Columns.Add("Email", typeof(string));
             table.Columns.Add("ChucVu", typeof(string));
             table.Columns.Add("DiaChi", typeof(string));
-            table.Columns.Add("thangVaoLam", typeof(int));
+            table.Columns.Add("ThangVaoLam", typeof(int));
 
             foreach (var item in list)
             {
@@ -56,9 +57,9 @@ namespace QuanLiNhanSu
             return table;
         }
 
-        public void Hienthidanhsach()
+        public async Task Hienthidanhsach()
         {
-            var result = _mediator.Send(new GetNhanVienListQuery()).AsTask().GetAwaiter().GetResult();
+            var result = await _mediator.Send(new GetNhanVienListQuery());
             if (result.IsSuccess)
             {
                 ds = new DataSet();
@@ -68,93 +69,131 @@ namespace QuanLiNhanSu
             }
         }
 
-        private void btn_Xuatds_Click(object sender, EventArgs e)
+        private async void btn_Xuatds_Click(object sender, EventArgs e)
         {
-            DataTable dataTable = new DataTable();
-            dataTable.Columns.Add("MaNV");
-            dataTable.Columns.Add("TenNV");
-            dataTable.Columns.Add("NgaySinh");
-            dataTable.Columns.Add("GioiTinh");
-            dataTable.Columns.Add("SoDienThoai");
-            dataTable.Columns.Add("Email");
-            dataTable.Columns.Add("ChucVu");
-            dataTable.Columns.Add("DiaChi");
-
-            foreach (DataGridViewRow row in dgv_Hienthi.Rows)
+            try
             {
-                if (!row.IsNewRow)
+                btn_Xuatds.Enabled = false;
+
+                DataTable dataTable = new DataTable();
+                dataTable.Columns.Add("MaNV");
+                dataTable.Columns.Add("TenNV");
+                dataTable.Columns.Add("NgaySinh");
+                dataTable.Columns.Add("GioiTinh");
+                dataTable.Columns.Add("SoDienThoai");
+                dataTable.Columns.Add("Email");
+                dataTable.Columns.Add("ChucVu");
+                dataTable.Columns.Add("DiaChi");
+
+                foreach (DataGridViewRow row in dgv_Hienthi.Rows)
                 {
-                    DataRow dataRow = dataTable.NewRow();
-                    dataRow[0] = row.Cells[0].Value?.ToString();
-                    dataRow[1] = row.Cells[1].Value?.ToString();
-                    dataRow[2] = row.Cells[2].Value?.ToString();
-                    dataRow[3] = row.Cells[3].Value?.ToString();
-                    dataRow[4] = row.Cells[4].Value?.ToString();
-                    dataRow[5] = row.Cells[5].Value?.ToString();
-                    dataRow[6] = row.Cells[6].Value?.ToString();
-                    dataRow[7] = row.Cells[7].Value?.ToString();
-                    dataTable.Rows.Add(dataRow);
+                    if (!row.IsNewRow)
+                    {
+                        DataRow dataRow = dataTable.NewRow();
+                        for (int i = 0; i < 8; i++)
+                            dataRow[i] = row.Cells[i].Value?.ToString();
+                        dataTable.Rows.Add(dataRow);
+                    }
+                }
+
+                using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+                {
+                    folderDialog.Description = "Chọn thư mục để lưu file Excel";
+                    if (folderDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string filePath = Path.Combine(folderDialog.SelectedPath, "DanhSachNhanVien.xlsx");
+                        txt_FilePath.Text = filePath;
+                        ExportFile(dataTable, "Danh sach", "DANH SÁCH NHÂN VIÊN", filePath);
+
+                        try
+                        {
+                            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                            {
+                                FileName = filePath,
+                                UseShellExecute = true
+                            });
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Đã xuất file thành công!\nĐường dẫn: " + filePath);
+                        }
+                    }
                 }
             }
-
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            folderBrowserDialog.Description = "Chọn thư mục để lưu file Excel";
-
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            catch (Exception ex)
             {
-                string folderPath = folderBrowserDialog.SelectedPath;
-                string fileName = "DanhSachNhanVien.xlsx";
-                string filePath = Path.Combine(folderPath, fileName);
-                txt_FilePath.Text = filePath;
-
-                ExportFile(dataTable, "Danh sach", "DANH SÁCH NHÂN VIÊN", filePath);
-                System.Diagnostics.Process.Start(filePath);
+                MessageBox.Show("Lỗi xuất file: " + ex.Message);
+            }
+            finally
+            {
+                btn_Xuatds.Enabled = true;
             }
         }
 
         public void ExportFile(DataTable dataTable, string sheetName, string title, string filePath)
         {
-            Microsoft.Office.Interop.Excel.Application oExcel = new Microsoft.Office.Interop.Excel.Application();
-            oExcel.Visible = false;
-            oExcel.DisplayAlerts = false;
+            Microsoft.Office.Interop.Excel.Application oExcel = null;
+            Microsoft.Office.Interop.Excel.Workbook oBook = null;
+            Microsoft.Office.Interop.Excel.Worksheet oSheet = null;
 
-            Microsoft.Office.Interop.Excel.Workbook oBook = oExcel.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel.Worksheet oSheet = (Microsoft.Office.Interop.Excel.Worksheet)oBook.Sheets[1];
-            oSheet.Name = sheetName;
-
-            Microsoft.Office.Interop.Excel.Range head = oSheet.get_Range("A1", "H1");
-            head.MergeCells = true;
-            head.Value2 = title;
-            head.Font.Bold = true;
-            head.Font.Name = "Times New Roman";
-            head.Font.Size = 20;
-            head.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-
-            string[] headers = { "Mã nhân viên", "Họ tên", "Ngày sinh", "Giới tính", "Số điện thoại", "Email", "Chức vụ", "Địa chỉ" };
-            for (int i = 0; i < headers.Length; i++)
+            try
             {
-                Microsoft.Office.Interop.Excel.Range cl = oSheet.get_Range(((char)('A' + i)).ToString() + "3", ((char)('A' + i)).ToString() + "3");
-                cl.Value2 = headers[i];
-                cl.ColumnWidth = 15.0;
-            }
+                oExcel = new Microsoft.Office.Interop.Excel.Application();
+                oExcel.Visible = false;
+                oExcel.DisplayAlerts = false;
 
-            object[,] arr = new object[dataTable.Rows.Count, dataTable.Columns.Count];
-            for (int row = 0; row < dataTable.Rows.Count; row++)
-            {
-                for (int col = 0; col < dataTable.Columns.Count; col++)
+                oBook = oExcel.Workbooks.Add(Type.Missing);
+                oSheet = (Microsoft.Office.Interop.Excel.Worksheet)oBook.Sheets[1];
+                oSheet.Name = sheetName;
+
+                // Tiêu đề
+                Microsoft.Office.Interop.Excel.Range head = oSheet.get_Range("A1", "H1");
+                head.MergeCells = true;
+                head.Value2 = title;
+                head.Font.Bold = true;
+                head.Font.Name = "Times New Roman";
+                head.Font.Size = 20;
+                head.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                Marshal.ReleaseComObject(head);
+
+                // Header cột
+                string[] headers = { "Mã nhân viên", "Họ tên", "Ngày sinh", "Giới tính", "Số điện thoại", "Email", "Chức vụ", "Địa chỉ" };
+                for (int i = 0; i < headers.Length; i++)
                 {
-                    arr[row, col] = dataTable.Rows[row][col];
+                    string col = ((char)('A' + i)).ToString();
+                    Microsoft.Office.Interop.Excel.Range cl = oSheet.get_Range(col + "3", col + "3");
+                    cl.Value2 = headers[i];
+                    cl.Font.Bold = true;
+                    cl.ColumnWidth = 15.0;
+                    Marshal.ReleaseComObject(cl);
                 }
+
+                // Dữ liệu
+                if (dataTable.Rows.Count > 0)
+                {
+                    object[,] arr = new object[dataTable.Rows.Count, dataTable.Columns.Count];
+                    for (int row = 0; row < dataTable.Rows.Count; row++)
+                        for (int col = 0; col < dataTable.Columns.Count; col++)
+                            arr[row, col] = dataTable.Rows[row][col];
+
+                    string endCell = "H" + (dataTable.Rows.Count + 3);
+                    Microsoft.Office.Interop.Excel.Range range = oSheet.get_Range("A4", endCell);
+                    range.Value2 = arr;
+                    range.Borders.LineStyle = Microsoft.Office.Interop.Excel.Constants.xlSolid;
+                    range.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    Marshal.ReleaseComObject(range);
+                }
+
+                oBook.SaveAs(filePath);
             }
-
-            Microsoft.Office.Interop.Excel.Range range = oSheet.get_Range("A4", "H" + (dataTable.Rows.Count + 3).ToString());
-            range.Value2 = arr;
-            range.Borders.LineStyle = Microsoft.Office.Interop.Excel.Constants.xlSolid;
-            range.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-
-            oBook.SaveAs(filePath);
-            oBook.Close();
-            oExcel.Quit();
+            finally
+            {
+                if (oBook != null) { oBook.Close(false); Marshal.ReleaseComObject(oBook); }
+                if (oSheet != null) { Marshal.ReleaseComObject(oSheet); }
+                if (oExcel != null) { oExcel.Quit(); Marshal.ReleaseComObject(oExcel); }
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
         }
 
         private void dgv_Hienthi_CellContentClick(object sender, DataGridViewCellEventArgs e)

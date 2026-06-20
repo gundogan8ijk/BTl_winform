@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using Mediator;
@@ -14,27 +14,17 @@ namespace QuanLiNhanSu.User_Control
     {
         private readonly IMediator _mediator;
         private DataSet ds = new DataSet();
-        private static string cbbthang = DateTime.Now.Month.ToString();
-        private static string cbbnam = DateTime.Now.Year.ToString();
-        private static string manv = "";
+        private string cbbthang = DateTime.Now.Month.ToString();
+        private string cbbnam = DateTime.Now.Year.ToString();
+        private string manv = "";
         private int vt = -1;
 
         public ChamC()
         {
             InitializeComponent();
             _mediator = Program.ServiceProvider.GetRequiredService<IMediator>();
-
-            dGVchamcong.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-            for (int i = 5; i < 16; i += 2)
-            {
-                if (dGVchamcong.Columns.Count > i)
-                    dGVchamcong.Columns[i].DefaultCellStyle.BackColor = Color.LightBlue;
-            }
-            if (dGVchamcong.Columns.Count > 3)
-                dGVchamcong.Columns[3].DefaultCellStyle.BackColor = Color.LightGreen;
-            
             combbnam.SelectedIndex = 2;
-            HienThiChamCong();
+            _ = HienThiChamCong();
         }
 
         private DataTable ToDataTable(List<ThangCongDto> list)
@@ -73,11 +63,11 @@ namespace QuanLiNhanSu.User_Control
             return table;
         }
 
-        private void HienThiChamCong()
+        private async Task HienThiChamCong()
         {
             int t = int.Parse(cbbthang);
             int n = int.Parse(cbbnam);
-            var result = _mediator.Send(new GetChamCongQuery(t, n)).AsTask().GetAwaiter().GetResult();
+            var result = await _mediator.Send(new GetChamCongQuery(t, n));
             if (result.IsSuccess)
             {
                 ds = new DataSet();
@@ -88,11 +78,11 @@ namespace QuanLiNhanSu.User_Control
             }
         }
 
-        private void hienthitheoma(string mnv)
+        private async Task hienthitheoma(string mnv)
         {
             int t = int.Parse(cbbthang);
             int n = int.Parse(cbbnam);
-            var result = _mediator.Send(new GetChamCongQuery(t, n, mnv)).AsTask().GetAwaiter().GetResult();
+            var result = await _mediator.Send(new GetChamCongQuery(t, n, mnv));
             if (result.IsSuccess)
             {
                 ds = new DataSet();
@@ -120,15 +110,15 @@ namespace QuanLiNhanSu.User_Control
             manv = textmanv.Text.Trim();
         }
 
-        private void btnxemcong_Click(object sender, EventArgs e)
+        private async void btnxemcong_Click(object sender, EventArgs e)
         {
-            HienThiChamCong();
+            await HienThiChamCong();
             textmanv.Clear();
         }
 
-        private void btnTim_Click(object sender, EventArgs e)
+        private async void btnTim_Click(object sender, EventArgs e)
         {
-            hienthitheoma(manv);
+            await hienthitheoma(manv);
             textmanv.Clear();
             btnTim.Enabled = false;
         }
@@ -169,36 +159,31 @@ namespace QuanLiNhanSu.User_Control
             textmanv.Clear();
         }
 
-        private void btnLuu_Click(object sender, EventArgs e)
+        private async void btnLuu_Click(object sender, EventArgs e)
         {
             try
             {
-                if (vt == -1) return;
-
+                btnLuu.Enabled = false;
                 int t = int.Parse(cbbthang);
                 int n = int.Parse(cbbnam);
 
-                // Save changes for all modified rows
                 foreach (DataGridViewRow gridRow in dGVchamcong.Rows)
                 {
                     if (gridRow.IsNewRow) continue;
 
                     string rowMaNV = gridRow.Cells[0].Value.ToString().Trim();
                     int[] days = new int[12];
-                    
+
                     for (int i = 0; i < 12; i++)
                     {
                         var cellVal = gridRow.Cells[i + 4].Value;
                         bool checkedState = false;
-                        if (cellVal != null)
-                        {
-                            if (cellVal is bool b) checkedState = b;
-                            else if (cellVal is int cellInt) checkedState = cellInt == 1;
-                        }
+                        if (cellVal is bool b) checkedState = b;
+                        else if (cellVal is int cellInt) checkedState = cellInt == 1;
                         days[i] = checkedState ? 1 : 0;
                     }
 
-                    var result = _mediator.Send(new UpdateThangCongCommand(rowMaNV, t, n, days)).AsTask().GetAwaiter().GetResult();
+                    var result = await _mediator.Send(new UpdateThangCongCommand(rowMaNV, t, n, days));
                     if (!result.IsSuccess)
                     {
                         MessageBox.Show("Cập nhật ngày công thất bại cho NV: " + rowMaNV);
@@ -206,21 +191,26 @@ namespace QuanLiNhanSu.User_Control
                     }
                 }
 
-                MessageBox.Show("Bạn đã cập nhật lại các ngày công của tháng " + cbbthang, "", MessageBoxButtons.OK);
-                HienThiChamCong();
+                MessageBox.Show("Đã cập nhật lại các ngày công của tháng " + cbbthang, "", MessageBoxButtons.OK);
+                await HienThiChamCong();
                 reload();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("lỗi: " + ex.Message);
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+            finally
+            {
+                btnLuu.Enabled = true;
             }
         }
 
-        private void btnbochon_Click(object sender, EventArgs e)
+        private async void btnbochon_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(textmanv.Text))
-                hienthitheoma(manv);
-            else HienThiChamCong();
+                await hienthitheoma(manv);
+            else
+                await HienThiChamCong();
 
             btnbochon.Visible = false;
         }

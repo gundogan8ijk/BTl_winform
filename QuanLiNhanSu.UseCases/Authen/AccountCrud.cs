@@ -56,7 +56,9 @@ public class AccountCrudHandlers :
         }
 
         acc.UpdateRole(request.Quyen);
-        acc.UpdatePassword(acc.MatKhau, request.MatKhau);
+
+        if (!string.IsNullOrWhiteSpace(request.MatKhau))
+            acc.SetPassword(request.MatKhau);
 
         await _repository.UpdateAsync(acc, cancellationToken);
         return Result.Success();

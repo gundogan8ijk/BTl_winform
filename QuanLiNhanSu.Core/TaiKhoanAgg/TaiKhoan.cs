@@ -38,7 +38,14 @@ public class TaiKhoan : EntityBase<TaiKhoan, string>, IAggregateRoot
         Guard.Against.NullOrWhiteSpace(newPassword, nameof(newPassword), "Mật khẩu mới không được để trống.");
         if (MatKhau != currentPassword)
             throw new InvalidOperationException("Mật khẩu hiện tại không đúng.");
-        
+
+        MatKhau = new MatKhau(newPassword).Value;
+    }
+
+    // Dành cho admin đặt lại mật khẩu mà không cần xác thực mật khẩu cũ
+    public void SetPassword(string newPassword)
+    {
+        Guard.Against.NullOrWhiteSpace(newPassword, nameof(newPassword), "Mật khẩu không được để trống.");
         MatKhau = new MatKhau(newPassword).Value;
     }
 
