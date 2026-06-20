@@ -32,7 +32,7 @@ public class LoginHandler : ICommandHandler<LoginCommand, Result<LoginResultDto>
                 return Result<LoginResultDto>.Unauthorized();
 
             var token = $"session-{taiKhoan.Email}-{DateTime.UtcNow.Ticks}";
-            return Result<LoginResultDto>.Success(new LoginResultDto(taiKhoan.Email, taiKhoan.Quyen, token));
+            return Result<LoginResultDto>.Success(new LoginResultDto(taiKhoan.Email, (double)taiKhoan.Quyen.Value, token));
         }
         catch (ValueObjectValidationException)
         {

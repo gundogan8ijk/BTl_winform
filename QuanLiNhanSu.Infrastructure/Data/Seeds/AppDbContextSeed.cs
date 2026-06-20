@@ -7,6 +7,7 @@ using QuanLiNhanSu.Core.TaiKhoanAgg;
 using QuanLiNhanSu.Core.ChamCongAgg;
 using QuanLiNhanSu.Core.ThangCongAgg;
 using QuanLiNhanSu.Core.LuongNhanVienAgg;
+using QuanLiNhanSu.Core._ValueObjects.Enums;
 using QuanLiNhanSu.Infrastructure.Data.Context;
 
 namespace QuanLiNhanSu.Infrastructure.Data.Seeds;
@@ -20,8 +21,8 @@ public static class AppDbContextSeed
         // 1. Seed Accounts (dùng bảng TaiKhoan, không phải AspNetUsers)
         if (!await context.TaiKhoans.AnyAsync())
         {
-            var admin = TaiKhoan.Create("admin@gmail.com", "admin123", 0);
-            var user  = TaiKhoan.Create("user@gmail.com",  "user123",  1);
+            var admin = TaiKhoan.Create("admin@gmail.com", "admin123", QuyenNguoiDung.Admin);
+            var user  = TaiKhoan.Create("user@gmail.com",  "user123",  QuyenNguoiDung.User);
 
             context.TaiKhoans.AddRange(admin, user);
             await context.SaveChangesAsync();

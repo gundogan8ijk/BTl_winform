@@ -8,24 +8,24 @@ public class TaiKhoan : EntityBase<TaiKhoan, string>, IAggregateRoot
 {
     public string Email => Id;
     public string MatKhau { get; private set; }
-    public double Quyen { get; private set; }
+    public QuyenNguoiDung Quyen { get; private set; }
 
     #pragma warning disable CS8618
     private TaiKhoan() { }
     #pragma warning restore CS8618
 
-    public TaiKhoan(string email, string matKhau, double quyen)
+    public TaiKhoan(string email, string matKhau, QuyenNguoiDung quyen)
     {
         Guard.Against.NullOrWhiteSpace(email, nameof(email));
         Guard.Against.NullOrWhiteSpace(matKhau, nameof(matKhau));
-        Guard.Against.OutOfRange(quyen, nameof(quyen), 0, 1);
+        Guard.Against.Null(quyen, nameof(quyen));
 
         Id = EmailAddress.From(email).Value;
         MatKhau = ValueObjects.MatKhau.From(matKhau).Value;
         Quyen = quyen;
     }
 
-    public static TaiKhoan Create(string email, string matKhau, double quyen) =>
+    public static TaiKhoan Create(string email, string matKhau, QuyenNguoiDung quyen) =>
         new(email, matKhau, quyen);
 
     public void UpdatePassword(string currentPassword, string newPassword)
@@ -42,9 +42,9 @@ public class TaiKhoan : EntityBase<TaiKhoan, string>, IAggregateRoot
         MatKhau = ValueObjects.MatKhau.From(newPassword).Value;
     }
 
-    public void UpdateRole(double newQuyen)
+    public void UpdateRole(QuyenNguoiDung newQuyen)
     {
-        Guard.Against.OutOfRange(newQuyen, nameof(newQuyen), 0, 1);
+        Guard.Against.Null(newQuyen, nameof(newQuyen));
         Quyen = newQuyen;
     }
 }

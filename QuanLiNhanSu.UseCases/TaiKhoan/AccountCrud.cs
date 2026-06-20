@@ -7,6 +7,7 @@ using Ardalis.Result;
 using Mediator;
 using QuanLiNhanSu.Core.TaiKhoanAgg;
 using QuanLiNhanSu.Core._ValueObjects;
+using QuanLiNhanSu.Core._ValueObjects.Enums;
 
 namespace QuanLiNhanSu.UseCases.TaiKhoan;
 
@@ -33,7 +34,7 @@ public class GetAccountQueryHandler : IQueryHandler<GetAccountQuery, Result<Acco
             var email = EmailAddress.From(request.Email);
             var acc = await _repository.GetByEmailAsync(email.Value, cancellationToken);
             if (acc == null) return Result<AccountDto>.NotFound("Không tìm thấy tài khoản.");
-            return Result<AccountDto>.Success(new AccountDto(acc.Email, acc.Quyen));
+            return Result<AccountDto>.Success(new AccountDto(acc.Email, (double)acc.Quyen.Value));
         }
         catch (ValueObjectValidationException ex)
         {
@@ -57,7 +58,7 @@ public class UpdateAccountHandler : ICommandHandler<UpdateAccountCommand, Result
             var acc = await _repository.GetByEmailAsync(email.Value, cancellationToken);
             if (acc == null) return Result.NotFound("Không tìm thấy tài khoản.");
 
-            acc.UpdateRole(request.Quyen);
+            acc.UpdateRole(QuyenNguoiDung.FromDouble(request.Quyen));
 
             if (!string.IsNullOrWhiteSpace(request.MatKhau))
                 acc.SetPassword(request.MatKhau);
@@ -110,7 +111,7 @@ public class GetAccountsQueryHandler : IQueryHandler<GetAccountsQuery, Result<Li
     public async ValueTask<Result<List<AccountDto>>> Handle(GetAccountsQuery request, CancellationToken cancellationToken)
     {
         var list = await _repository.GetAllAsync(cancellationToken);
-        var dtos = list.Select(x => new AccountDto(x.Email, x.Quyen)).ToList();
+        var dtos = list.Select(x => new AccountDto(x.Email, (double)x.Quyen.Value)).ToList();
         return Result<List<AccountDto>>.Success(dtos);
     }
 }

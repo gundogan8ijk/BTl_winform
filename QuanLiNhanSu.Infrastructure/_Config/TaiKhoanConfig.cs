@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using QuanLiNhanSu.Core.TaiKhoanAgg;
+using QuanLiNhanSu.Core._ValueObjects.Enums;
 
 namespace QuanLiNhanSu.Infrastructure._Config;
 
@@ -24,6 +25,9 @@ public class TaiKhoanConfig : IEntityTypeConfiguration<TaiKhoan>
 
         builder.Property(x => x.Quyen)
             .HasColumnName("Quyen")
+            .HasConversion(
+                v => (double)v.Value,
+                d => QuyenNguoiDung.FromDouble(d))
             .IsRequired();
     }
 }

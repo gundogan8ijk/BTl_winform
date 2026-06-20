@@ -5,6 +5,7 @@ using Ardalis.Result;
 using Mediator;
 using QuanLiNhanSu.Core.TaiKhoanAgg;
 using QuanLiNhanSu.Core._ValueObjects;
+using QuanLiNhanSu.Core._ValueObjects.Enums;
 using CoreTaiKhoan = QuanLiNhanSu.Core.TaiKhoanAgg.TaiKhoan;
 
 namespace QuanLiNhanSu.UseCases.TaiKhoan.Register;
@@ -29,7 +30,7 @@ public class RegisterHandler : ICommandHandler<RegisterCommand, Result<string>>
             if (await _repository.ExistsByEmailAsync(email.Value, cancellationToken))
                 return Result<string>.Conflict("Email này đã được đăng ký.");
 
-            var newAccount = CoreTaiKhoan.Create(email.Value, request.Password, request.Quyen);
+            var newAccount = CoreTaiKhoan.Create(email.Value, request.Password, QuyenNguoiDung.FromDouble(request.Quyen));
             await _repository.AddAsync(newAccount, cancellationToken);
 
             return Result<string>.Success("Đăng ký tài khoản thành công.");
