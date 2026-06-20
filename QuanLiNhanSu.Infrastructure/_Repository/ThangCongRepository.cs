@@ -27,16 +27,4 @@ public class ThangCongRepository : EfRepository<ThangCong>, IThangCongRepository
         => await _dbContext.ThangCongs
             .Where(x => x.ThangNam == thangNam)
             .ToListAsync(cancellationToken);
-
-    public async Task AddThangCongAsync(ThangCong thangCong, CancellationToken cancellationToken = default)
-    {
-        await _dbContext.ThangCongs.AddAsync(thangCong, cancellationToken);
-        await _dbContext.SaveChangesAsync(cancellationToken);
-    }
-
-    public async Task UpdateThangCongAsync(ThangCong thangCong, CancellationToken cancellationToken = default)
-    {
-        _dbContext.ThangCongs.Update(thangCong);
-        await _dbContext.SaveChangesAsync(cancellationToken);
-    }
 }

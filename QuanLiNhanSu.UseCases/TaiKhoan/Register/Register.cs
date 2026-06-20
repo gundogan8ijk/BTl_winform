@@ -15,10 +15,12 @@ public record RegisterCommand(string Email, string Password, double Quyen) : ICo
 public class RegisterHandler : ICommandHandler<RegisterCommand, Result<string>>
 {
     private readonly ITaiKhoanRepository _repository;
+    private readonly IPasswordHasher _passwordHasher;
 
-    public RegisterHandler(ITaiKhoanRepository repository)
+    public RegisterHandler(ITaiKhoanRepository repository, IPasswordHasher passwordHasher)
     {
         _repository = repository;
+        _passwordHasher = passwordHasher;
     }
 
     public async ValueTask<Result<string>> Handle(RegisterCommand request, CancellationToken cancellationToken)
@@ -30,7 +32,8 @@ public class RegisterHandler : ICommandHandler<RegisterCommand, Result<string>>
             if (await _repository.ExistsByEmailAsync(email.Value, cancellationToken))
                 return Result<string>.Conflict("Email này đã được đăng ký.");
 
-            var newAccount = CoreTaiKhoan.Create(email.Value, request.Password, QuyenNguoiDung.FromDouble(request.Quyen));
+            var hashedPassword = _passwordHasher.HashPassword(request.Password);
+            var newAccount = CoreTaiKhoan.Create(email.Value, hashedPassword, QuyenNguoiDung.FromDouble(request.Quyen));
             await _repository.AddAsync(newAccount, cancellationToken);
 
             return Result<string>.Success("Đăng ký tài khoản thành công.");

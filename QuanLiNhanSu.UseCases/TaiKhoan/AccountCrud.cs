@@ -47,8 +47,13 @@ public class GetAccountQueryHandler : IQueryHandler<GetAccountQuery, Result<Acco
 public class UpdateAccountHandler : ICommandHandler<UpdateAccountCommand, Result>
 {
     private readonly ITaiKhoanRepository _repository;
+    private readonly IPasswordHasher _passwordHasher;
 
-    public UpdateAccountHandler(ITaiKhoanRepository repository) => _repository = repository;
+    public UpdateAccountHandler(ITaiKhoanRepository repository, IPasswordHasher passwordHasher)
+    {
+        _repository = repository;
+        _passwordHasher = passwordHasher;
+    }
 
     public async ValueTask<Result> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
     {
@@ -61,7 +66,10 @@ public class UpdateAccountHandler : ICommandHandler<UpdateAccountCommand, Result
             acc.UpdateRole(QuyenNguoiDung.FromDouble(request.Quyen));
 
             if (!string.IsNullOrWhiteSpace(request.MatKhau))
-                acc.SetPassword(request.MatKhau);
+            {
+                var hashedPassword = _passwordHasher.HashPassword(request.MatKhau);
+                acc.SetPassword(hashedPassword);
+            }
 
             await _repository.UpdateAsync(acc, cancellationToken);
             return Result.Success();

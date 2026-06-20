@@ -11,3 +11,9 @@ public class LuongByMaNVThangNamSpec : Specification<LuongNhanVien>
     public LuongByMaNVThangNamSpec(NhanVienId maNV, ThangNam thangNam) =>
         Query.AsNoTracking().Where(x => x.MaNV == maNV && x.ThangNam == thangNam);
 }
+
+public class LuongByMaNVSpec : Specification<LuongNhanVien>
+{
+    public LuongByMaNVSpec(NhanVienId maNV) =>
+        Query.Where(x => x.MaNV == maNV);
+}

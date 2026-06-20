@@ -37,7 +37,7 @@ public class UpdateThangCongCommandHandler : ICommandHandler<UpdateThangCongComm
                 return Result.NotFound("Không tìm thấy dữ liệu chấm công cho tháng và năm này.");
 
             thangCong.UpdateDays(request.DayStatuses);
-            await _repository.UpdateThangCongAsync(thangCong, cancellationToken);
+            await _repository.UpdateAsync(thangCong, cancellationToken);
             return Result.Success();
         }
         catch (ValueObjectValidationException ex)

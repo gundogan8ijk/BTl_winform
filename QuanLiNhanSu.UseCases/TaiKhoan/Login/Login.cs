@@ -15,10 +15,12 @@ public record LoginResultDto(string Email, double Quyen, string Token);
 public class LoginHandler : ICommandHandler<LoginCommand, Result<LoginResultDto>>
 {
     private readonly ITaiKhoanRepository _repository;
+    private readonly IPasswordHasher _passwordHasher;
 
-    public LoginHandler(ITaiKhoanRepository repository)
+    public LoginHandler(ITaiKhoanRepository repository, IPasswordHasher passwordHasher)
     {
         _repository = repository;
+        _passwordHasher = passwordHasher;
     }
 
     public async ValueTask<Result<LoginResultDto>> Handle(LoginCommand request, CancellationToken cancellationToken)
@@ -28,7 +30,7 @@ public class LoginHandler : ICommandHandler<LoginCommand, Result<LoginResultDto>
             var email = EmailAddress.From(request.Email);
             var taiKhoan = await _repository.GetByEmailAsync(email.Value, cancellationToken);
 
-            if (taiKhoan == null || taiKhoan.MatKhau != request.Password)
+            if (taiKhoan == null || !_passwordHasher.VerifyPassword(taiKhoan.MatKhau, request.Password))
                 return Result<LoginResultDto>.Unauthorized();
 
             var token = $"session-{taiKhoan.Email}-{DateTime.UtcNow.Ticks}";

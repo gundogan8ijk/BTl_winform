@@ -2,8 +2,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Data.SqlClient;
-using System.Data;
 using QuanLiNhanSu.Core.NhanVienAgg;
 using QuanLiNhanSu.Core.TaiKhoanAgg;
 using QuanLiNhanSu.Core.ChamCongAgg;
@@ -12,6 +10,7 @@ using QuanLiNhanSu.Core.LuongNhanVienAgg;
 using QuanLiNhanSu.Infrastructure.Data.Context;
 using QuanLiNhanSu.Infrastructure.Data.Models;
 using QuanLiNhanSu.Infrastructure._Repository;
+using QuanLiNhanSu.Infrastructure._PasswordHasher;
 using System;
 
 namespace QuanLiNhanSu.Infrastructure;
@@ -32,9 +31,6 @@ public static class InfrastructureServiceExtensions
             options.UseSqlServer(connectionString);
         });
 
-        // Register Dapper IDbConnection
-        services.AddScoped<IDbConnection>(_ => new SqlConnection(connectionString));
-
         // Register Identity
         services.AddIdentityCore<ApplicationUser>(opt =>
         {
@@ -50,6 +46,7 @@ public static class InfrastructureServiceExtensions
         .AddTokenProvider<EmailTokenProvider<ApplicationUser>>(TokenOptions.DefaultEmailProvider);
 
         // Register repositories
+        services.AddScoped<IPasswordHasher, IdentityPasswordHasher>();
         services.AddScoped<INhanVienRepository, NhanVienRepository>();
         services.AddScoped<ITaiKhoanRepository, TaiKhoanRepository>();
         services.AddScoped<IChamCongRepository, ChamCongRepository>();

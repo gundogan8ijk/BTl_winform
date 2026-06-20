@@ -10,6 +10,4 @@ public interface IThangCongRepository : IRepository<ThangCong>
 {
     Task<ThangCong?> GetThangCongAsync(NhanVienId maNV, ThangNam thangNam, CancellationToken cancellationToken = default);
     Task<List<ThangCong>> GetThangCongListAsync(ThangNam thangNam, CancellationToken cancellationToken = default);
-    Task AddThangCongAsync(ThangCong thangCong, CancellationToken cancellationToken = default);
-    Task UpdateThangCongAsync(ThangCong thangCong, CancellationToken cancellationToken = default);
 }
