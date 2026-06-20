@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using Mediator;
-using QuanLiNhanSu.UseCases.ChamCong;
 using QuanLiNhanSu.UseCases.ThangCong;
 
 namespace QuanLiNhanSu.User_Control

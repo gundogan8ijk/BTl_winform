@@ -9,9 +9,7 @@ using QuanLiNhanSu.Core.NhanVienAgg.ValueObjects;
 using ThangCong = QuanLiNhanSu.Core.ThangCongAgg.ThangCong;
 using QuanLiNhanSu.Core.ThangCongAgg;
 using QuanLiNhanSu.Core.ThangCongAgg.Specifications;
-using ThangCongDto = QuanLiNhanSu.UseCases.ThangCong.ThangCongDto;
-
-namespace QuanLiNhanSu.UseCases.ChamCong;
+namespace QuanLiNhanSu.UseCases.ThangCong;
 
 public record GetChamCongQuery(int Thang, int Nam, string? MaNV = null) : IQuery<Result<List<ThangCongDto>>>;
 
